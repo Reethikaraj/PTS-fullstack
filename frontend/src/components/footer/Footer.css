@@ -1,0 +1,14 @@
+.Footer {
+  color: var(--text-secondary) !important;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  box-shadow: 5px 0px 10px 1px #888888 !important;
+  padding: 2% 30% !important;
+}
+.Icon {
+  color: var(--background-primary) !important;
+  fill: var(--background-primary) !important;
+}

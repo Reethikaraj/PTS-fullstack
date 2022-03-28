@@ -1,0 +1,59 @@
+
+GET http://localhost:5000/api/v1/products
+###
+GET http://localhost:5000/api/v1/products?keyword=korean
+###
+GET http://localhost:5000/api/v1/products?keyword=korean&category=Hairaccessories&rating=5
+###
+GET http://localhost:5000/api/v1/products?price[gt]=30
+###
+GET http://localhost:5000/api/v1/products?page=1
+###
+GET  http://localhost:5000/api/v1/product/6231f5b461dd2e7be02c3089
+###
+POST http://localhost:5000/api/v1/admin/products/new
+Content-Type: application/json
+
+{
+"name": "testItem1",
+"category": "Hair accessories",
+"description":{
+"skus": ["Red", "Pink", "White", "Cream", "Black"],
+"color": "Single",
+"material": "Elastic, Pearl, Velvet, Fur",
+"numOfPieces": 1,
+"about": "Colorful hair tie band can match to different styles hair well, curly hair, long or short hair, suitable for ponytail, braiding, hairdos and so on" ,
+"features": ["These bands are Girls Favourite. Different Colour Solid Hair Scrunchies pack glides over the hair, Leaving Your Hair Less Frizzy and Less Creased after wearing it up.", "Made with the Finest Fabric Glides Over Hair, Without Pulling or Snagging on Your Delicate Tresses, Leaving Your Hair Less Frizzy, Less Damaged, Less Creasyand Most Importantly, Looking Uber Glam Look.", "Designed With The Highest Standards to Create the Highest Quality and Finely Crafted Products to You. It gives a Unique, Beautiful, and Exquisite Touch to your overall look. Team anyone of them for any occassion, birthday bash, get together ceremonies, Return Gifts, etc."]
+},
+"images":[
+{"publicId": "l4xdt09pp8dlshje", 
+"url": "https://res.cloudinary.com/daax4j/image/upload/v164452914/l4xdt0q494pp8dlsuhje.jpg"}
+]
+}
+
+###
+PUT   http://localhost:5000/api/v1/admin/products/623604be23a2a741e221d3f9
+Content-Type: application/json
+
+{
+    "name": "Testtttttt"
+}
+
+###
+DELETE http://localhost:5000/api/v1/admin/products/623604be23a2a741e221d3f9
+
+###
+PUT http://localhost:5000/api/v1/product/review
+Content-Type: application/json
+
+{
+    "rating" : 5, 
+    "comment": "test", 
+    "productId": "6231f5b461dd2e7be02c3089"
+}
+
+###
+GET http://localhost:5000/api/v1/product/reviews?id=6231f5b461dd2e7be02c3089
+
+###
+DELETE http://localhost:5000/api/v1/product/review/delete?id=6231f5b461dd2e7be02c3089

@@ -1,0 +1,35 @@
+.productsHeading {
+  margin: 2vmax auto;
+  width: 15vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  padding: 2vmax;
+  color: rgba(0, 0, 0, 0.678);
+  font: 500 1.5vmax 'Roboto';
+  text-align: center;
+}
+
+.pagination {
+  padding: 2vmax;
+}
+.filterBox {
+  display: flex;
+  flex-direction: row;
+}
+.innerBox {
+  padding: 2% !important;
+  margin: 0 5% !important;
+  width: 100%;
+  max-width: 20vmax;
+}
+.slider {
+  color: var(--background-primary) !important;
+}
+
+.category-link {
+  list-style: none;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.category-link:hover {
+  color: var(--background-primary);
+}

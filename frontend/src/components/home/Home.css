@@ -1,0 +1,49 @@
+.Banner {
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  justify-content: center !important;
+}
+.Welcome {
+  padding: 10vmax 8vmax;
+  color: var(--text-primary) !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100%;
+  height: auto;
+}
+.img {
+  width: 100%;
+  height: auto;
+}
+/* .p {
+  font-size: 2.5vmax;
+}
+.h2 {
+  font-size: 5vmax;
+} */
+
+.homeHeading {
+  text-align: center;
+  /* font-size: 1.4vmax; */
+  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  color: var(--text-primary);
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 5vmax auto;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+}
+.products {
+  display: flex;
+  margin: 1vmax auto;
+  width: 80vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}

@@ -1,0 +1,40 @@
+.productCard {
+  width: 14vmax;
+  display: flex;
+  flex-direction: column;
+  margin: 1vmax;
+  text-decoration: none;
+  color: var(--text-primary);
+  align-items: center;
+  transition: all 0.5s;
+  padding: 2%;
+  border-style: double;
+  border-color: var(--background-primary);
+}
+.productCard > img {
+  width: 12vmax;
+}
+
+.productCard > div {
+  margin: 0.3vmax;
+  display: flex;
+  justify-content: flex-start;
+}
+.productCard > div > span {
+  margin-top: 0.4vmax;
+}
+
+.productCard > p {
+  margin: 1vmax 0.5vmax;
+  margin-bottom: 0;
+}
+
+.productCard > span {
+  margin: 0.5vmax;
+  color: tomato;
+}
+
+.productCard:hover {
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  transform: translateY(-1vmax);
+}

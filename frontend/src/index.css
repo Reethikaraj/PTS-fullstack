@@ -1,0 +1,14 @@
+:root {
+  --background-primary: #f2789f;
+  --background-secondary: white;
+  --text-primary: #39065a;
+  --text-secondary: #633f2c;
+  --text-hover: #9c6b92c7;
+}
+[data-theme='dark'] {
+  --background-primary: #6a0572;
+  --background-secondary: #39065a;
+  --text-primary: white;
+  --text-secondary: #5a5551;
+  --text-hover: #f0b5e3c7;
+}

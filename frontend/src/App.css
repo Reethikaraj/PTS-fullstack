@@ -1,0 +1,41 @@
+:root {
+  --background-primary: #f2789f;
+  --background-secondary: white;
+  --text-primary: #39065a;
+  --text-secondary: #633f2c;
+  --text-hover: #9c6b92c7;
+}
+[data-theme='dark'] {
+  --background-primary: #6a0572;
+  --background-secondary: #39065a;
+  --text-primary: white;
+  --text-secondary: #5a5551;
+  --text-hover: #f0b5e3c7;
+}
+/* hjgjyh */
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+.greenColor {
+  color: green !important;
+}
+.redColor {
+  color: red !important;
+}

@@ -1,0 +1,74 @@
+POST http://localhost:5000/api/v1/user/register
+Content-Type: application/json
+
+{
+    "name": "Reethika",
+    "email": "reetusmile@gmail.com",
+    "password": "password"
+}
+### 
+POST http://localhost:5000/api/v1/user/login
+Content-Type: application/json
+
+{
+    "email": "reetusmiley@gmail.com",
+    "password": "1111111111"
+}
+###
+GET  http://localhost:5000/api/v1/user/logout
+
+###
+POST http://localhost:5000/api/v1/user/forgot/password
+Content-Type: application/json
+
+{
+    "email": "reetusmiley@gmail.com"
+}
+###
+PUT http://localhost:5000/api/v1/user/reset/password/877a2102a028242076be51ea14ae94c6ea2fa624
+Content-Type: application/json
+
+{
+"password": "0000000000",
+"confirmPassword": "0000000000"
+}
+###
+PUT http://localhost:5000/api/v1/user/update/password
+Content-Type: application/json
+
+{
+"oldPassword": "0000000000",
+"newPassword": "1111111111",
+"confirmPassword": "1111111111"
+}
+
+###
+GET  http://localhost:5000/api/v1/user/me
+
+###
+PUT  http://localhost:5000/api/v1/user/me/update
+Content-Type: application/json
+
+{
+    "email": "reetusmiley@gmail.com",
+    "name": "Reetu"
+}
+
+###
+GET  http://localhost:5000/api/v1/admin/users
+
+###
+GET  http://localhost:5000/api/v1/admin/user/62350a31c01d927c03be7664
+
+###
+PUT  http://localhost:5000/api/v1/admin/update/role/62352e4fa00c350997e34461
+Content-Type: application/json
+
+{
+    "name": "Reethika",
+    "email": "reetu1@gmail.com",
+    "role": "admin"
+}
+
+###
+DELETE  http://localhost:5000/api/v1/admin/delete/user/623540fd9e0f974331e33477

@@ -1,0 +1,43 @@
+###
+POST http://localhost:5000/api/v1/order/new
+Content-Type: application/json
+
+{   "totalPrice": 500,
+    "orderItems":[{
+        "product": "6231f5b461dd2e7be02c3089",
+        "name": "Korean pins set of 8",
+        "price": 54,
+        "image": "test",
+        "quantity": 1
+    }],
+    "shippingInfo":{
+        "address": "jkdxjksjxbk",
+        "pinCode": 768768,
+        "phoneNo": 8974239872
+    },
+    "paymentInfo": {
+        "id": "test",
+        "status": "success"
+    }
+
+}
+
+###
+GET http://localhost:5000/api/v1/order/623635351e936c60aa25b8d1
+
+###
+GET http://localhost:5000/api/v1/order/me
+
+###
+GET http://localhost:5000/api/v1/admin/orders
+
+###
+PUT http://localhost:5000/api/v1/admin/order/updatestatus/623645927aa809e1ac2f3fba
+Content-Type: application/json
+
+{
+"status": "Shipped"
+}
+
+###
+DELETE http://localhost:5000/api/v1/admin/order/delete/623635351e936c60aa25b8d1

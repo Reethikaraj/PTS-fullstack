@@ -1,0 +1,40 @@
+.signin {
+  padding: 2% !important;
+  margin-top: 5% !important;
+}
+.login_signUp_toggle {
+  display: flex;
+  justify-content: flex-start;
+}
+.tab_left {
+  margin-left: 45%;
+}
+.switch {
+  width: 50% !important;
+}
+.css-binzgt {
+  margin-top: 0 !important;
+}
+.registerImage {
+  display: flex;
+}
+.registerImage > img {
+  width: 3vmax;
+  border-radius: 100%;
+}
+.signUpForm {
+  transform: translateY(-100%) translateX(-100vmax);
+}
+
+.shiftToLeft {
+  transform: translateX(-100vmax);
+}
+.shiftToNeutral {
+  transform: translateX(0%);
+}
+.shiftToNeutralForm {
+  transform: translateX(0%) translateY(-100%);
+}
+.shiftToRight {
+  transform: translateX(100%);
+}
