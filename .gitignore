@@ -3,4 +3,4 @@ frontend/node_modules
 .env
 .eslintrc.json
 .eslintignore
-prettierrc.json
+prettierrc.js
