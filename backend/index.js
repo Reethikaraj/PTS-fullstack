@@ -14,7 +14,7 @@ app.use(cors())
 
 // .env config
 if (process.env.NODE_ENV !== 'PRODUCTION') {
-  dotenv.config({ path: 'backend/.env' })
+  dotenv.config({ path: '.env' })
 }
 app.use(cookieParser())
 

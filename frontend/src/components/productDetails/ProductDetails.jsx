@@ -39,6 +39,7 @@ const ProductDetails = () => {
     size: window.innerWidth < 600 ? 20 : 25,
   }
   useEffect(() => {
+    console.log('dispatching')
     // error display using react-alert
     if (error) {
       alert.error(error)
@@ -46,6 +47,8 @@ const ProductDetails = () => {
     }
     dispatch(getProductDetails(params.id))
   }, [dispatch, params.id, alert, error])
+  console.log('product', product)
+  console.log(loading)
 
   return (
     <Fragment>
@@ -103,7 +106,7 @@ const ProductDetails = () => {
                     {/* Features */}
                     <Typography variant='subtitle'>Features:</Typography>
                     {product.description.features &&
-                      product.description.features.map((feature, i) => (
+                      product?.description?.features.map((feature, i) => (
                         <Typography variant='body2'>{feature}</Typography>
                       ))}
 

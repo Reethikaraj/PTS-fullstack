@@ -1,5 +1,8 @@
 const initialState = {
   user: {},
+  loading: false,
+  isAuthenticated: false,
+  error: null,
 }
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {

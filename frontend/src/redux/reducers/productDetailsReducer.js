@@ -1,5 +1,7 @@
 const initialState = {
   product: {},
+  loading: false,
+  error: null,
 }
 
 export const productDetailsReducer = (state = initialState, action) => {

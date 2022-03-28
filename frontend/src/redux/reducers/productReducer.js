@@ -1,5 +1,7 @@
 const initialState = {
   products: [],
+  loading: false,
+  error: null,
 }
 
 export const productReducer = (state = initialState, action) => {
