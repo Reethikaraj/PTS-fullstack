@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getProductDetails } from '../../redux/actions/productDetailsAction'
+import {
+  getProductDetails,
+  clearErrors,
+} from '../../redux/actions/productDetailsAction'
 import ReactStars from 'react-rating-stars-component'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import ReviewCard from '../reviewCard/ReviewCard'
 import Loader from '../loading/Loader'
 import { useAlert } from 'react-alert'
-import { clearErrors } from '../../redux/actions/productAction'
 import {
   Container,
   Grid,
@@ -29,88 +31,96 @@ const ProductDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetailsReducer
   )
+  useEffect(() => {
+    // error display using react-alert
+    // if (error) {
+    //   alert.error(error)
+    //   dispatch(clearErrors())
+    // }
+    dispatch(getProductDetails(params.id))
+    console.log('dispatching')
+  }, [dispatch, params.id, alert, error])
+  console.log('product', product)
+  console.log('loading', loading)
+  if (loading) {
+    return <Loader />
+  }
+  if (error) {
+    alert.error(error)
+  }
   // Rating stars settings
   const options = {
     edit: false,
     color: 'rgba(20,20,20,0.1)',
     activeColor: 'tomato',
-    value: product.rating,
+    value: product?.rating,
     isHalf: true,
     size: window.innerWidth < 600 ? 20 : 25,
   }
-  useEffect(() => {
-    console.log('dispatching')
-    // error display using react-alert
-    if (error) {
-      alert.error(error)
-      dispatch(clearErrors())
-    }
-    dispatch(getProductDetails(params.id))
-  }, [dispatch, params.id, alert, error])
-  console.log('product', product)
-  console.log(loading)
-
   return (
     <Fragment>
-      {loading ? (
+      {/* {loading ? (
         <Loader />
-      ) : (
-        <Fragment>
+      ) : ( */}
+      <Fragment>
+        {product && (
           <Container className='CardDetails'>
             <Card>
               <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
                   <Carousel className='Carousel'>
-                    {product.images &&
-                      product.images.map((item, i) => (
-                        <img
-                          className='CarouselImage'
-                          key={i}
-                          src={item.url}
-                          alt={`${i} Slide`}
-                        />
-                      ))}
+                    {product?.images?.map((item, i) => (
+                      <img
+                        className='CarouselImage'
+                        key={i}
+                        src={item.url}
+                        alt={`${i} Slide`}
+                      />
+                    ))}
                   </Carousel>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <CardContent>
-                    <Typography variant='h6'>{product.name}</Typography>
+                    <Typography variant='h6'>{product?.name}</Typography>
                     <Typography variant='caption'>
-                      Product # {product._id}
+                      Product #{product?._id}
                     </Typography>
                     <Typography variant='body2'>
                       {product?.description?.about}
                     </Typography>
                     <ReactStars {...options} />
                     <Typography variant='caption'>
-                      ({product.numOfReviews} Reviews)
+                      ({product?.numOfReviews} Reviews)
                     </Typography>
-                    <Typography variant='body1'>{`${product.price}SEK`}</Typography>
+                    <Typography variant='body1'>{`${product?.price}SEK`}</Typography>
                     <RemoveCircleIcon />
                     <input readOnly type='number' value='1' />
                     <AddCircleIcon />
-                    <Button variant='contained'>Add to Cart</Button>
+                    <Button className='button' variant='contained'>
+                      Add to Cart
+                    </Button>
                     <Box>
                       <Typography variant='subtitle'>
                         Status:
                         <Typography
                           variant='subtitle'
                           className={
-                            product.quantity < 1 ? 'redColor' : 'greenColor'
+                            product?.quantity < 1 ? 'redColor' : 'greenColor'
                           }
                         >
-                          {product.quantity < 1 ? 'OutOfStock' : 'InStock'}
+                          {product?.quantity < 1 ? 'OutOfStock' : 'InStock'}
                         </Typography>
                       </Typography>
                     </Box>
                     {/* Features */}
                     <Typography variant='subtitle'>Features:</Typography>
                     {product.description.features &&
-                      product?.description?.features.map((feature, i) => (
+                      product?.description.features.map((feature, i) => (
                         <Typography variant='body2'>{feature}</Typography>
                       ))}
-
-                    <Button variant='contained'>Submit Review</Button>
+                    <Button className='button' variant='contained'>
+                      Submit Review
+                    </Button>
                   </CardContent>
                 </Grid>
               </Grid>
@@ -127,8 +137,8 @@ const ProductDetails = () => {
               <p>No Reviews Yet</p>
             )}
           </Container>
-        </Fragment>
-      )}
+        )}
+      </Fragment>
     </Fragment>
   )
 }

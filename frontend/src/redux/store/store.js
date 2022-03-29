@@ -7,20 +7,17 @@ import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
 
 // Combining all the reducers
-export const reducer = combineReducers({
-  productReducer,
-  productDetailsReducer,
-  themeReducer,
-  userReducer,
+export const rootReducer = combineReducers({
+  productReducer: productReducer,
+  productDetailsReducer: productDetailsReducer,
+  themeReducer: themeReducer,
+  userReducer: userReducer,
 })
-// let initailState = {}
+let initialState = {}
 const middleware = [thunk]
-
-// Creating store
 const reduxStore = createStore(
-  reducer,
-  // initailState,
+  rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 )
-
 export default reduxStore

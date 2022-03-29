@@ -1,18 +1,18 @@
 const initialState = {
-  product: {},
+  product: null,
   loading: false,
   error: null,
 }
-
 export const productDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'PRODUCT_DETAILS_REQUEST':
       return {
-        loading: true,
         ...state,
+        loading: true,
       }
     case 'PRODUCT_DETAILS_SUCCESS':
       return {
+        ...state,
         loading: false,
         product: action.payload,
       }
@@ -21,7 +21,6 @@ export const productDetailsReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       }
-
     case 'CLEAR_ERRORS':
       return {
         ...state,

@@ -2,18 +2,26 @@ import React, { Fragment, useEffect, useRef, useState } from 'react'
 import Loader from '../../loading/Loader'
 import { Container, Box, Grid, Button, TextField, Link } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, clearErrors } from '../../../redux/actions/userAction'
+import {
+  login,
+  clearErrors,
+  register,
+  loadUser,
+} from '../../../redux/actions/userAction'
 import { useAlert } from 'react-alert'
+import { useNavigate } from 'react-router-dom'
 import './LoginRegister.css'
 
 const LoginRegister = () => {
   // Redux
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // To display errors
   const alert = useAlert()
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.userReducer
   )
+  console.log('error', error)
   // useRef for switching tabs
   const loginTab = useRef(null)
   const registerTab = useRef(null)
@@ -32,7 +40,7 @@ const LoginRegister = () => {
   const [avatarPreview, setAvatarPreview] = useState('/assets/profile.png')
   // Login
   const loginSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     dispatch(login(loginEmail, loginPassword))
   }
   // Register
@@ -43,9 +51,9 @@ const LoginRegister = () => {
     myForm.set('email', email)
     myForm.set('password', password)
     myForm.set('avatar', avatar)
-    // dispatch(register(myForm))
+    dispatch(register(myForm))
   }
-
+  // Taking input
   const registerDataChange = (e) => {
     if (e.target.name === 'avatar') {
       const reader = new FileReader()
@@ -60,15 +68,18 @@ const LoginRegister = () => {
       setUser({ ...user, [e.target.name]: e.target.value })
     }
   }
-  useEffect(
-    (error) => {
-      if (error) {
-        alert.error(error)
-        dispatch(clearErrors())
-      }
-    },
-    [dispatch, alert, error]
-  )
+  // Display errors
+  useEffect(() => {
+    console.log('dispatching from user component')
+    if (error) {
+      alert.error(error)
+      dispatch(clearErrors())
+    }
+    if (isAuthenticated) {
+      navigate('/account')
+    }
+  }, [dispatch, alert, error, isAuthenticated, navigate])
+
   // Switching tabs
   const switchTabs = (e, tab) => {
     if (tab === 'login') {
@@ -143,6 +154,7 @@ const LoginRegister = () => {
                   }}
                 />
                 <Button
+                  className='button'
                   type='submit'
                   fullWidth
                   variant='contained'
@@ -176,13 +188,11 @@ const LoginRegister = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
-                      autoComplete='given-name'
-                      name='Name'
                       required
                       fullWidth
                       id='firstName'
+                      name='name'
                       label='Name'
-                      autoFocus
                       value={name}
                       onChange={registerDataChange}
                     />
@@ -228,10 +238,12 @@ const LoginRegister = () => {
                   </Grid>
                 </Grid>
                 <Button
+                  className='button'
                   type='submit'
                   fullWidth
                   variant='contained'
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={registerSubmit}
                 >
                   Register
                 </Button>

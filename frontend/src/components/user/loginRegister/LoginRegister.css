@@ -5,18 +5,33 @@
 .login_signUp_toggle {
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
 }
 .tab_left {
   margin-left: 45%;
 }
 .switch {
   width: 50% !important;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
 }
 .css-binzgt {
   margin-top: 0 !important;
 }
 .registerImage {
   display: flex;
+  cursor: pointer;
+}
+.button {
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  color: var(--text-primary) !important;
 }
 .registerImage > img {
   width: 3vmax;

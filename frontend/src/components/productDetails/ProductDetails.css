@@ -4,37 +4,21 @@
 .CarouselImage {
   width: 100%;
   max-width: 20vmax;
-  height: auto;
 }
 .Carousel {
   padding: 1vmax;
   width: 100%;
   max-width: 25vmax;
+  height: 100%;
 }
-.Button {
-  border: none;
-  background-color: tomato;
-  font: 500 1vmax 'Roboto';
-  border-radius: 20px;
-  padding: 0.6vmax 2vmax;
-  margin: 1vmax 0.5vmax;
-  color: white;
-  cursor: pointer;
-  transition: all 0.5s;
-  outline: none;
+.button {
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  color: var(--text-primary) !important;
 }
-.Button:hover {
-  background-color: rgb(197, 68, 45);
-  transform: scale(1.1);
-}
-
-/* @media (min-width: 600px) {
-  .css-1b3l6lk-MuiGrid-root {
-    width: 100% !important;
-    max-width: 30vmax !important;
-    height: auto;
-  }
-} */
 .justify {
   justify-content: center;
 }

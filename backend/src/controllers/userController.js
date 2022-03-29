@@ -5,17 +5,24 @@ import sendToken from '../utils/jwtToken.js'
 import sendEmail from '../utils/sendEmail.js'
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
+import cloudinary from 'cloudinary'
 
 // Register user
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
+  // Cloudinary for avatar
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: 'avatar',
+    width: 150,
+    crop: 'scale',
+  })
   const { name, email, password } = req.body
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: 'sample id',
-      url: 'sampleProfilePicUrl',
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   })
   sendToken(user, 201, res)

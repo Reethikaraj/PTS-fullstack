@@ -8,6 +8,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(
       `http://localhost:5000/api/v1/product/${id}`
     )
+    console.log(data)
     dispatch({
       type: 'PRODUCT_DETAILS_SUCCESS',
       payload: data.product,
@@ -18,4 +19,9 @@ export const getProductDetails = (id) => async (dispatch) => {
       payload: error.response.data.message,
     })
   }
+}
+
+// Clearing Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: 'CLEAR_ERRORS' })
 }

@@ -1,6 +1,7 @@
 import app from './index.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cloudinary from 'cloudinary'
 
 // ErrorHandling for Uncaught exceptions (like undefined eg.console.log(abc))
 process.on('uncaughtException', (err) => {
@@ -31,6 +32,13 @@ mongoose
   .catch(() => {
     console.log('connection failed')
   })
+
+// Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 // ErrorHandling for Unhandled Promise Rejection(like No try or catch for a promise)
 process.on('unhandledRejection', (err) => {

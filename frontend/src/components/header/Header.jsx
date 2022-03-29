@@ -27,10 +27,10 @@ import { Link } from 'react-router-dom'
 import { switchTheme } from '../../redux/actions/themeAction'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
+import UserOptions from '../userDashboard/UserOptions'
 import './Header.css'
 
 const drawerWidth = 240
-
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -79,15 +79,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
-
+  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   const handleDrawerOpen = () => {
     setOpen(true)
   }
-
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
   // Themes
   const dispatch = useDispatch()
   const themes = useSelector((state) => state.themeReducer.theme)
@@ -100,11 +98,15 @@ export default function PersistentDrawerLeft() {
           <Typography variant='h6' noWrap component='div' className='ptsNav'>
             PTS
           </Typography>
+
+          {isAuthenticated && <UserOptions user={user} />}
+
           {themes === 'light' ? (
             <DarkModeIcon onClick={() => dispatch(switchTheme())} />
           ) : (
             <LightModeIcon onClick={() => dispatch(switchTheme())} />
           )}
+
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -140,7 +142,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
 
-        <List className='Icon'>
+        <List className='Icon' onClick={handleDrawerClose}>
           <Link className='link' to={'/'}>
             <ListItem disablePadding>
               <ListItemButton>
@@ -153,7 +155,7 @@ export default function PersistentDrawerLeft() {
           </Link>
 
           <ListItem disablePadding>
-            <Link className='link' to={'/products'}>
+            <Link className='link' to={'/products'} onClick={handleDrawerClose}>
               <ListItemButton>
                 <ListItemIcon>
                   <ShoppingBagIcon className='Icon' />
@@ -162,7 +164,7 @@ export default function PersistentDrawerLeft() {
               </ListItemButton>
             </Link>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={handleDrawerClose}>
             <ListItemButton>
               <ListItemIcon>
                 <ShoppingCartIcon className='Icon' />
@@ -172,7 +174,7 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <Divider />
-        <List className='Icon'>
+        <List className='Icon' onClick={handleDrawerClose}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -181,7 +183,7 @@ export default function PersistentDrawerLeft() {
               <ListItemText primary='Login' />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={handleDrawerClose}>
             <ListItemButton>
               <ListItemIcon>
                 <HowToRegIcon className='Icon' />
@@ -191,7 +193,7 @@ export default function PersistentDrawerLeft() {
           </ListItem>
         </List>
         <Divider />
-        <List className='Icon'>
+        <List className='Icon' onClick={handleDrawerClose}>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>

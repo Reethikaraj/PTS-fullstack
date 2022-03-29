@@ -11,7 +11,6 @@ const options = {
   position: positions.BOTTOM_CENTER,
   transition: transitions.SCALE,
 }
-
 ReactDOM.render(
   <Provider store={reduxStore}>
     {/* Wrapping for error display using react-alert */}

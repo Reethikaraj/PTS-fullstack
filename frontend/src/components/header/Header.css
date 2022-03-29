@@ -6,9 +6,10 @@
     var(--background-primary)
   );
 }
-/* .Icon {
-  color: var(--background-primary) !important;
-  fill: var(--background-primary) !important;
+/* .css-i4bv87-MuiSvgIcon-root {
+  position: fixed;
+  right: 3vmax;
+  top: 1vmax;
 } */
 .css-1q14hl0 {
   padding: 0 !important;
