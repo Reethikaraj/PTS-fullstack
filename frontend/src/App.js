@@ -13,12 +13,15 @@ import { loadUser } from './redux/actions/userAction'
 import Profile from './components/user/profile/Profile'
 import ProtectedRoute from './components/route/ProtectedRoute'
 import './App.css'
+import UpdateProfile from './components/user/updateProfile/UpdateProfile'
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
+  const themes = useSelector((state) => state.themeReducer.theme)
   React.useEffect(() => {
     // Dispatching loadUser so that the state is shown when the user logins
     reduxStore.dispatch(loadUser())
   }, [])
-  const themes = useSelector((state) => state.themeReducer.theme)
+
   return (
     <div className='App' data-theme={themes}>
       <BrowserRouter>
@@ -31,14 +34,10 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:keyword' element={<Products />} />
           <Route path='/login' element={<LoginRegister />} />
-          <Route
-            path='/account'
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+          {isAuthenticated && <Route path='/account' element={<Profile />} />}
+          {isAuthenticated && (
+            <Route path='/me/update' element={<UpdateProfile />} />
+          )}
         </Routes>
         <Footer />
       </BrowserRouter>

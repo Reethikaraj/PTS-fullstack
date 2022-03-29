@@ -5,6 +5,7 @@ import { productReducer } from '../reducers/productReducer'
 import { productDetailsReducer } from '../reducers/productDetailsReducer'
 import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
+import { profileReducer } from '../reducers/profileReducer'
 
 // Combining all the reducers
 export const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   productDetailsReducer: productDetailsReducer,
   themeReducer: themeReducer,
   userReducer: userReducer,
+  profileReducer: profileReducer,
 })
 let initialState = {}
 const middleware = [thunk]
