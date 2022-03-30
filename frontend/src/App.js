@@ -17,8 +17,7 @@ import UpdateProfile from './components/user/updateProfile/UpdateProfile'
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   const themes = useSelector((state) => state.themeReducer.theme)
-  React.useEffect(() => {
-    // Dispatching loadUser so that the state is shown when the user logins
+  useEffect(() => {
     reduxStore.dispatch(loadUser())
   }, [])
 
@@ -34,7 +33,10 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:keyword' element={<Products />} />
           <Route path='/login' element={<LoginRegister />} />
-          {isAuthenticated && <Route path='/account' element={<Profile />} />}
+          <Route element={<ProtectedRoute />}>
+            <Route path='/account' element={<Profile />} />
+          </Route>
+
           {isAuthenticated && (
             <Route path='/me/update' element={<UpdateProfile />} />
           )}

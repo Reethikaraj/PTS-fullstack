@@ -26,6 +26,9 @@ export const register = (userData) => async (dispatch) => {
       userData,
       config
     )
+    // .then((data) =>
+    //   localStorage.setItem('token', JSON.stringify(data.data.token))
+    // )
     dispatch({ type: 'REGISTER_USER_SUCCESS', payload: data.user })
   } catch (error) {
     dispatch({

@@ -5,7 +5,9 @@ import { Provider } from 'react-redux'
 import reduxStore from './redux/store/store'
 import { positions, transitions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
+import { loadUser } from './redux/actions/userAction'
 
+// reduxStore.dispatch(loadUser())
 // Options for error display using react-alert
 const options = {
   position: positions.BOTTOM_CENTER,

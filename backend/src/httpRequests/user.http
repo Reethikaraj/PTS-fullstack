@@ -2,9 +2,9 @@ POST http://localhost:5000/api/v1/user/register
 Content-Type: application/json
 
 {
-    "name": "Reethika",
-    "email": "reetusmile@gmail.com",
-    "password": "password"
+    "name": "Test",
+    "email": "Test1@gmail.com",
+    "password": "1111111111"
 }
 ### 
 POST http://localhost:5000/api/v1/user/login
