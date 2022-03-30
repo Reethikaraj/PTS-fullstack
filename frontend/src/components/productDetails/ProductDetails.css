@@ -22,3 +22,8 @@
 .justify {
   justify-content: center;
 }
+.quantity {
+  margin-bottom: 10%;
+  padding: 3%;
+  width: fit-content;
+}

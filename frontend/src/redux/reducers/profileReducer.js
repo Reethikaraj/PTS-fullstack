@@ -2,6 +2,7 @@ const initialState = {
   loading: false,
   error: null,
   isUpdated: null,
+  // loggedIn: false,
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        // loggedIn: true,
         isUpdated: action.payload,
       }
 

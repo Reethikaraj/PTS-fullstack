@@ -4,12 +4,17 @@ import axios from 'axios'
 export const updateProfile = (userData) => async (dispatch) => {
   try {
     dispatch({ type: 'UPDATE_PROFILE_REQUEST ' })
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
     const { data } = await axios.put(
       'http://localhost:5000/api/v1/user/me/update',
       userData,
       config
     )
+    console.log('data', data)
     dispatch({ type: 'UPDATE_PROFILE_SUCCESS', payload: data.success })
   } catch (error) {
     dispatch({

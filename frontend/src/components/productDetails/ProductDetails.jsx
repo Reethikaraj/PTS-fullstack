@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
@@ -20,8 +20,8 @@ import {
   Button,
   Box,
 } from '@mui/material'
-
 import Carousel from 'react-material-ui-carousel'
+import { addItemsToCart } from '../../redux/actions/cartAction'
 import './ProductDetails.css'
 
 const ProductDetails = () => {
@@ -31,22 +31,33 @@ const ProductDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetailsReducer
   )
+  // Cart
+  const [quantity, setQuantity] = useState(1)
+  const increaseQuantity = () => {
+    if (product.quantity <= quantity) return
+    const quant = quantity + 1
+    setQuantity(quant)
+  }
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return
+    const quant = quantity - 1
+    setQuantity(quant)
+  }
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(params.id, quantity))
+    alert.success('Items added to cart')
+  }
+  // Getting details
   useEffect(() => {
     // error display using react-alert
-    // if (error) {
-    //   alert.error(error)
-    //   dispatch(clearErrors())
-    // }
+    if (error) {
+      alert.error(error)
+      dispatch(clearErrors())
+    }
     dispatch(getProductDetails(params.id))
-    console.log('dispatching')
   }, [dispatch, params.id, alert, error])
-  console.log('product', product)
-  console.log('loading', loading)
   if (loading) {
     return <Loader />
-  }
-  if (error) {
-    alert.error(error)
   }
   // Rating stars settings
   const options = {
@@ -93,10 +104,19 @@ const ProductDetails = () => {
                       ({product?.numOfReviews} Reviews)
                     </Typography>
                     <Typography variant='body1'>{`${product?.price}SEK`}</Typography>
-                    <RemoveCircleIcon />
-                    <input readOnly type='number' value='1' />
-                    <AddCircleIcon />
-                    <Button className='button' variant='contained'>
+                    <RemoveCircleIcon onClick={decreaseQuantity} />
+                    <input
+                      className='quantity'
+                      readOnly
+                      type='number'
+                      value={quantity}
+                    />
+                    <AddCircleIcon onClick={increaseQuantity} />
+                    <Button
+                      className='button'
+                      variant='contained'
+                      onClick={addToCartHandler}
+                    >
                       Add to Cart
                     </Button>
                     <Box>

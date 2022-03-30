@@ -3,9 +3,11 @@
   left: 80%;
   top: 0.6%;
 }
-
 .speedDialIcon {
   width: 56px;
   height: 56px;
   border-radius: 100%;
+}
+.icon {
+  margin: 10%;
 }

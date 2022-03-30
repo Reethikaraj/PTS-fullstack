@@ -6,6 +6,7 @@ import { productDetailsReducer } from '../reducers/productDetailsReducer'
 import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
 import { profileReducer } from '../reducers/profileReducer'
+import { cartReducer } from '../reducers/cartReducer'
 
 // Combining all the reducers
 export const rootReducer = combineReducers({
@@ -14,12 +15,29 @@ export const rootReducer = combineReducers({
   themeReducer: themeReducer,
   userReducer: userReducer,
   profileReducer: profileReducer,
+  cartReducer: cartReducer,
 })
-let initialState = {}
-const middleware = [thunk]
-const reduxStore = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-)
-export default reduxStore
+
+function saveToLocalStorage(state) {
+  const localStorageState = JSON.stringify(state)
+  localStorage.setItem('state', localStorageState)
+}
+
+function loadFromLocalStorage() {
+  const localStorageState = localStorage.getItem('state')
+  if (localStorageState === null) return undefined
+  return JSON.parse(localStorageState)
+}
+
+const storeFactory = () => {
+  const middleware = [thunk]
+  const reduxStore = createStore(
+    rootReducer,
+    loadFromLocalStorage(),
+    composeWithDevTools(applyMiddleware(...middleware))
+  )
+  reduxStore.subscribe(() => saveToLocalStorage(reduxStore.getState()))
+  return reduxStore
+}
+
+export default storeFactory

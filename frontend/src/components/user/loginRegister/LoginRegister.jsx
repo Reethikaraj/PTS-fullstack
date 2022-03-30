@@ -77,7 +77,6 @@ const LoginRegister = () => {
     }
     if (isAuthenticated) {
       navigate('/account')
-      // dispatch(loadUser())
     }
   }, [dispatch, alert, error, isAuthenticated, navigate])
 

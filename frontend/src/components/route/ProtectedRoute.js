@@ -1,11 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 
-const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
+const ProtectedRoute = () => {
+  let loggedinUser = localStorage.getItem('token')
+  // const user = loggedinUser && jwt_decode( loggedinUser )
+  const user = localStorage.getItem('user')
+  console.log(user)
   const { isAuthenticated } = useSelector((state) => state.userReducer)
-  if (isAuthenticated === true) return <Outlet />
-  else return <Navigate to={'/login'} />
+  // const { loggedIn } = useSelector((state) => state.profileReducer)
+  if (user) {
+    if (isAuthenticated === true || user.email) return <Outlet />
+    else return <Navigate to={'/login'} />
+  } else return <Navigate to={'/login'} />
 }
-
 export default ProtectedRoute

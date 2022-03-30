@@ -14,13 +14,9 @@ import Profile from './components/user/profile/Profile'
 import ProtectedRoute from './components/route/ProtectedRoute'
 import './App.css'
 import UpdateProfile from './components/user/updateProfile/UpdateProfile'
+import Cart from './components/cart/cart/Cart'
 function App() {
-  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   const themes = useSelector((state) => state.themeReducer.theme)
-  useEffect(() => {
-    reduxStore.dispatch(loadUser())
-  }, [])
-
   return (
     <div className='App' data-theme={themes}>
       <BrowserRouter>
@@ -36,10 +32,10 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/account' element={<Profile />} />
           </Route>
-
-          {isAuthenticated && (
+          <Route element={<ProtectedRoute />}>
             <Route path='/me/update' element={<UpdateProfile />} />
-          )}
+          </Route>
+          <Route path='/cart' element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>

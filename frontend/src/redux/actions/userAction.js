@@ -5,12 +5,18 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: 'LOGIN_REQUEST' })
     const config = { headers: { 'Content-Type': 'application/json' } }
-    const { data } = await axios.post(
-      'http://localhost:5000/api/v1/user/login',
-      { email, password },
-      config
-    )
-    dispatch({ type: 'LOGIN_SUCCESS', payload: data.user })
+    const { data } = await axios
+      .post(
+        'http://localhost:5000/api/v1/user/login',
+        { email, password },
+        config
+      )
+      .then((res) => {
+        console.log('response', res)
+        dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.user })
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+      })
   } catch (error) {
     dispatch({ type: 'LOGIN_FAIL', payload: error.response.data.message })
   }
@@ -21,14 +27,13 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: 'REGISTER_USER_REQUEST' })
     const config = { headers: { 'Content-Type': 'multipart/form-data' } }
-    const { data } = await axios.post(
-      'http://localhost:5000/api/v1/user/register',
-      userData,
-      config
-    )
-    // .then((data) =>
-    //   localStorage.setItem('token', JSON.stringify(data.data.token))
-    // )
+    const { data } = await axios
+      .post('http://localhost:5000/api/v1/user/register', userData, config)
+      .then((res) => {
+        console.log('response', res)
+        localStorage.setItem('token', res.data.token)
+      })
+
     dispatch({ type: 'REGISTER_USER_SUCCESS', payload: data.user })
   } catch (error) {
     dispatch({
