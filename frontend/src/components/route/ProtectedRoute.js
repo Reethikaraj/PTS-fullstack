@@ -7,7 +7,6 @@ const ProtectedRoute = () => {
   let loggedinUser = localStorage.getItem('token')
   // const user = loggedinUser && jwt_decode( loggedinUser )
   const user = localStorage.getItem('user')
-  console.log(user)
   const { isAuthenticated } = useSelector((state) => state.userReducer)
   // const { loggedIn } = useSelector((state) => state.profileReducer)
   if (user) {

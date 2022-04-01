@@ -4,7 +4,9 @@ import axios from 'axios'
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: 'LOGIN_REQUEST' })
-    const config = { headers: { 'Content-Type': 'application/json' } }
+    const config = {
+      headers: { 'Content-Type': 'application/json', withCredentials: true },
+    }
     const { data } = await axios
       .post(
         'http://localhost:5000/api/v1/user/login',
@@ -12,7 +14,7 @@ export const login = (email, password) => async (dispatch) => {
         config
       )
       .then((res) => {
-        console.log('response', res)
+        // console.log('response', res)
         dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.user })
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.user))
@@ -26,7 +28,12 @@ export const login = (email, password) => async (dispatch) => {
 export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: 'REGISTER_USER_REQUEST' })
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } }
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        withCredentials: true,
+      },
+    }
     const { data } = await axios
       .post('http://localhost:5000/api/v1/user/register', userData, config)
       .then((res) => {

@@ -8,10 +8,11 @@ import {
   removeItemsFromCart,
 } from '../../../redux/actions/cartAction'
 import './Cart.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { cartItems } = useSelector((state) => state.cartReducer)
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1
@@ -25,6 +26,10 @@ const Cart = () => {
   }
   const deleteCartItems = (id) => {
     dispatch(removeItemsFromCart(id))
+  }
+  const checkoutHandler = () => {
+    navigate('/shipping')
+    // navigate('/login?redirect=shipping')
   }
   return (
     <Fragment>
@@ -83,7 +88,7 @@ const Cart = () => {
               </div>
               <div></div>
               <div className='checkOutBtn'>
-                <Button>Check Out</Button>
+                <Button onClick={checkoutHandler}>Check Out</Button>
               </div>
             </div>
           </div>

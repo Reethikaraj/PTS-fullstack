@@ -11,9 +11,10 @@ process.on('uncaughtException', (err) => {
 })
 
 // .env config
-if (process.env.NODE_ENV !== 'PRODUCTION') {
-  dotenv.config({ path: 'backend/.env' })
-}
+// if (process.env.NODE_ENV !== 'PRODUCTION') {
+//   dotenv.config({ path: '.env' })
+// }
+dotenv.config()
 
 // Connecting mongoDB
 const uri = process.env.MONGODB_URI
@@ -30,7 +31,7 @@ mongoose
     )
   })
   .catch(() => {
-    console.log('connection failed')
+    console.log('Connection failed')
   })
 
 // Cloudinary

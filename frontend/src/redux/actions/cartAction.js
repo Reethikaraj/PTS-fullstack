@@ -22,7 +22,7 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) => {
     type: 'REMOVE_CART_ITEM',
     payload: id,
   })
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  // localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 // SAVE SHIPPING INFO
 export const saveShippingInfo = (data) => async (dispatch) => {
@@ -30,5 +30,5 @@ export const saveShippingInfo = (data) => async (dispatch) => {
     type: 'SAVE_SHIPPING_INFO',
     payload: data,
   })
-  localStorage.setItem('shippingInfo', JSON.stringify(data))
+  // localStorage.setItem('shippingInfo', JSON.stringify(data))
 }

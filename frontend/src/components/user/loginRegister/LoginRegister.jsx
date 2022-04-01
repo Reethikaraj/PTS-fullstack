@@ -68,6 +68,8 @@ const LoginRegister = () => {
       setUser({ ...user, [e.target.name]: e.target.value })
     }
   }
+  // For redirecting
+  // const redirect = Location.search ? Location.search.split('=')[1] : '/account'
   // Display errors
   useEffect(() => {
     console.log('dispatching from user component')

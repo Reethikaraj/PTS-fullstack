@@ -7,6 +7,7 @@ import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
 import { profileReducer } from '../reducers/profileReducer'
 import { cartReducer } from '../reducers/cartReducer'
+import { orderReducer } from '../reducers/orderReducer'
 
 // Combining all the reducers
 export const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
   userReducer: userReducer,
   profileReducer: profileReducer,
   cartReducer: cartReducer,
+  orderReducer: orderReducer,
 })
 
 function saveToLocalStorage(state) {

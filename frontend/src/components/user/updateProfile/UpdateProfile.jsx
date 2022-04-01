@@ -10,7 +10,9 @@ import { useAlert } from 'react-alert'
 import MetaData from '../../MetaData'
 import { Box, Grid, Button, TextField, Container } from '@mui/material'
 import './UpdateProfile.css'
-const UpdateProfile = ({ history }) => {
+import { useNavigate } from 'react-router-dom'
+const UpdateProfile = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const alert = useAlert()
   const { user } = useSelector((state) => state.userReducer)
@@ -51,13 +53,13 @@ const UpdateProfile = ({ history }) => {
     }
     if (isUpdated) {
       alert.success('Profile Updated Successfully')
-      dispatch(loadUser())
-      history.push('/account')
+      // dispatch(loadUser())
+      navigate('/account')
       dispatch({
         type: 'UPDATE_PROFILE_RESET',
       })
     }
-  }, [dispatch, error, alert, history, user, isUpdated])
+  }, [dispatch, error, alert, user, isUpdated, navigate])
   return (
     <Fragment>
       {loading ? (
