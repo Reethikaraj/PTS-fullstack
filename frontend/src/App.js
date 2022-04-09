@@ -49,13 +49,13 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:keyword' element={<Products />} />
           <Route path='/login' element={<LoginRegister />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/account' element={<Profile />} />
-            <Route path='/me/update' element={<UpdateProfile />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/shipping' element={<Shipping />} />
-            <Route path='/order/confirm' element={<ConfirmOrder />} />
-          </Route>
+          {/* <Route element={<ProtectedRoute />}> */}
+          <Route path='/account' element={<Profile />} />
+          <Route path='/me/update' element={<UpdateProfile />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/shipping' element={<Shipping />} />
+          <Route path='/order/confirm' element={<ConfirmOrder />} />
+          {/* </Route> */}
           <Route element={<ProtectedRoute />}>
             <Route
               path='/process/payment'

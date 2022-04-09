@@ -14,7 +14,7 @@ export const login = (email, password) => async (dispatch) => {
         config
       )
       .then((res) => {
-        // console.log('response', res)
+        console.log('response', res)
         dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.user })
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.user))

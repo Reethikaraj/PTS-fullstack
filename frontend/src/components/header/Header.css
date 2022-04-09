@@ -1,25 +1,11 @@
 .Header {
-  color: var(--text-primary) !important;
+  color: var(--text-secondary) !important;
   background-image: linear-gradient(
     to right,
     var(--background-secondary),
     var(--background-primary)
   );
-}
-/* .css-i4bv87-MuiSvgIcon-root {
-  position: fixed;
-  right: 3vmax;
-  top: 1vmax;
-} */
-.css-1q14hl0 {
-  padding: 0 !important;
-}
-.css-1ouyzdj {
-  padding: 0 !important;
-}
-.css-18sg6k4-MuiPaper-root-MuiDrawer-paper {
-  background-color: var(--background-secondary) !important;
-  color: var(--background-primary) !important;
+  box-shadow: 5px 0px 10px 5px #888888 !important;
 }
 .ptsNav {
   font-family: 'Acme', sans-serif !important;
@@ -27,5 +13,10 @@
 }
 .link {
   text-decoration: none;
-  color: var(--background-primary);
+  color: var(--text-primary);
+}
+.profileImg {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
 }

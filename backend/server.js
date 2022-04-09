@@ -10,7 +10,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1)
 })
 
-// .env config
+// // env config
 // if (process.env.NODE_ENV !== 'PRODUCTION') {
 //   dotenv.config({ path: '.env' })
 // }
@@ -22,7 +22,7 @@ mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // serverApi: ServerApiVersion.v1
+    // serverApi: ServerApiVersion.v1,
   })
   .then(() => {
     console.log('Connection succesful')

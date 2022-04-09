@@ -7,7 +7,7 @@
   justify-content: center !important;
 }
 .Welcome {
-  padding: 10vmax 8vmax;
+  padding: 5vmax 10vmax 0 5vmax;
   color: var(--text-primary) !important;
   justify-content: center !important;
   text-align: center !important;
@@ -18,13 +18,6 @@
   width: 100%;
   height: auto;
 }
-/* .p {
-  font-size: 2.5vmax;
-}
-.h2 {
-  font-size: 5vmax;
-} */
-
 .homeHeading {
   text-align: center;
   /* font-size: 1.4vmax; */
@@ -46,4 +39,16 @@
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
+}
+.CarouselImage {
+  padding: 0 -1vmax -2vmax 4vmax;
+  width: 100%;
+  max-width: 20vmax;
+  border-radius: 20%;
+}
+.Carousel {
+  margin-left: 12vmax;
+  width: 100%;
+  max-width: 25vmax;
+  height: 100%;
 }

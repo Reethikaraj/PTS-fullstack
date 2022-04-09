@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
   const { isAuthenticated } = useSelector((state) => state.userReducer)
   // const { loggedIn } = useSelector((state) => state.profileReducer)
   if (user) {
-    if (isAuthenticated === true || user.email) return <Outlet />
+    if (isAuthenticated === true || loggedinUser) return <Outlet />
     else return <Navigate to={'/login'} />
   } else return <Navigate to={'/login'} />
 }

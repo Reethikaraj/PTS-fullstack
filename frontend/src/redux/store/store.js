@@ -30,6 +30,13 @@ function loadFromLocalStorage() {
   if (localStorageState === null) return undefined
   return JSON.parse(localStorageState)
 }
+// const tokenFromStorage = localStorage.getItem('token')
+//   ? JSON.parse(localStorage.getItem('token'))
+//   : null
+
+// const initialState = {
+//   userLogin: { token: tokenFromStorage },
+// }
 
 const storeFactory = () => {
   const middleware = [thunk]

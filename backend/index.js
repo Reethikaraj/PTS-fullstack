@@ -15,7 +15,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// .env config
+// // .env config
 // if (process.env.NODE_ENV !== 'PRODUCTION') {
 //   dotenv.config({ path: '.env' })
 // }

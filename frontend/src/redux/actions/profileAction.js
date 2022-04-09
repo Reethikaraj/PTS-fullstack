@@ -1,20 +1,25 @@
 import axios from 'axios'
 
 // Update Profile
-export const updateProfile = (userData) => async (dispatch) => {
+export const updateProfile = (userData) => async (dispatch, getState) => {
   try {
     dispatch({ type: 'UPDATE_PROFILE_REQUEST ' })
+    // const {
+    //   userLogin: { token },
+    // } = getState()
+    const token = localStorage.getItem('token')
     const config = {
       headers: {
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
     }
+    console.log('token', token, 'userData', userData)
     const { data } = await axios.put(
       'http://localhost:5000/api/v1/user/me/update',
       userData,
       config
     )
-    console.log('data', data)
     dispatch({ type: 'UPDATE_PROFILE_SUCCESS', payload: data.success })
   } catch (error) {
     dispatch({

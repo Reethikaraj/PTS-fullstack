@@ -1,18 +1,17 @@
 import React, { Fragment, useEffect } from 'react'
 import { Container, Box, Grid, Typography } from '@mui/material'
-import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle'
-import Product from '../productCard/ProductCard'
 import MetaData from '../MetaData'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearErrors, getProduct } from '../../redux/actions/productAction'
 import Loader from '../loading/Loader'
 import { useAlert } from 'react-alert'
+import Carousel from 'react-material-ui-carousel'
 import './Home.css'
 
 const Home = () => {
   const alert = useAlert()
   const dispatch = useDispatch()
-  const { loading, error, products, productCount } = useSelector(
+  const { loading, error, products } = useSelector(
     (state) => state.productReducer
   )
   // Fetching data from redux
@@ -43,32 +42,30 @@ const Home = () => {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                  <Box className='Welcome'>
-                    <Typography variant='p'>Welcome to PTS</Typography>
-                    <Typography variant='h6'>
-                      Find amazing Products below
-                    </Typography>
-                    <a href='#products'>
-                      <ArrowDropDownCircleIcon />
+                  <Box>
+                    <Box className='Welcome'>
+                      <Typography variant='p'>Welcome to PTS</Typography>
+                      <Typography variant='h6'>
+                        Find amazing Products below
+                      </Typography>
+                    </Box>
+                    <a href='/products'>
+                      <Carousel className='Carousel'>
+                        {products &&
+                          products.map((product) => (
+                            <img
+                              className='CarouselImage'
+                              src={product.images[0].url}
+                              alt='product'
+                            />
+                          ))}
+                      </Carousel>
                     </a>
                   </Box>
                 </Grid>
               </Grid>
             </Container>
           </Box>
-
-          {/* Featured Products */}
-
-          <h2 className='homeHeading'>Featured Products</h2>
-          {/* Products */}
-          <Grid container spacing={1}>
-            {products &&
-              products.map((product) => (
-                <Grid lg={3} xs={12}>
-                  <Product product={product} />
-                </Grid>
-              ))}
-          </Grid>
         </React.Fragment>
       )}
     </Fragment>
