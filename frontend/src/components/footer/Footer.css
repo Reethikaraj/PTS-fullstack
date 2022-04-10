@@ -6,9 +6,35 @@
     var(--background-primary)
   );
   box-shadow: 5px 0px 10px 1px #888888 !important;
-  padding: 2% 30% !important;
+  justify-content: space-around;
+  padding-top: 10px;
+  position: fixed;
+  bottom: 300px;
 }
-.Icon {
-  color: var(--background-primary) !important;
-  fill: var(--background-primary) !important;
+
+.tooltip {
+  position: relative;
+  width: 35px;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 35px;
+  color: var(--text-secondary) !important;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  border: 1px solid var(--background-secondary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  font-size: 10px;
+  border-radius: 3px;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

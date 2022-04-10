@@ -47,8 +47,16 @@
   border-radius: 20%;
 }
 .Carousel {
-  margin-left: 12vmax;
+  margin-left: 6vmax;
   width: 100%;
   max-width: 25vmax;
   height: 100%;
+}
+@media only screen and (max-width: 670px) {
+  .Carousel {
+    margin: 0;
+  }
+  .Welcome {
+    padding: 0;
+  }
 }

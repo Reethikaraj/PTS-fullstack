@@ -1,4 +1,4 @@
-.Header {
+.header {
   color: var(--text-secondary) !important;
   background-image: linear-gradient(
     to right,
@@ -19,4 +19,42 @@
   width: 50px;
   height: auto;
   border-radius: 50%;
+  cursor: pointer;
+}
+.icon {
+  padding: 0 2%;
+  cursor: pointer;
+}
+.tooltip {
+  position: relative;
+  width: 35px;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  color: var(--text-secondary) !important;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  border: 1px solid var(--background-secondary);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  font-size: 13px;
+  border-radius: 3px;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.css-1xijrof {
+  margin-top: 10px;
+}
+@media only screen and (max-width: 440px) {
+  .css-2ulfj5-MuiTypography-root {
+    margin-bottom: 5px;
+  }
 }

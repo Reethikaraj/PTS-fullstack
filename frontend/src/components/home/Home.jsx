@@ -40,7 +40,6 @@ const Home = () => {
                 <Grid item xs={12} sm={6}>
                   <img className='img' src='assets/ptsLogoRBG.png' alt='Logo' />
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                   <Box>
                     <Box className='Welcome'>
@@ -48,19 +47,20 @@ const Home = () => {
                       <Typography variant='h6'>
                         Find amazing Products below
                       </Typography>
+
+                      <a href='/products'>
+                        <Carousel className='Carousel'>
+                          {products &&
+                            products.map((product) => (
+                              <img
+                                className='CarouselImage'
+                                src={product.images[0].url}
+                                alt='product'
+                              />
+                            ))}
+                        </Carousel>
+                      </a>
                     </Box>
-                    <a href='/products'>
-                      <Carousel className='Carousel'>
-                        {products &&
-                          products.map((product) => (
-                            <img
-                              className='CarouselImage'
-                              src={product.images[0].url}
-                              alt='product'
-                            />
-                          ))}
-                      </Carousel>
-                    </a>
                   </Box>
                 </Grid>
               </Grid>
