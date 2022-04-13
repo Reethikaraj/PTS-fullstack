@@ -28,7 +28,7 @@
   font: 400 1vmax;
   text-decoration: none;
 }
-.cartPage {
+/* .cartPage {
   padding: 5vmax;
 }
 .cartHeader {
@@ -59,11 +59,11 @@
   margin: auto;
   display: grid;
   grid-template-columns: 4fr 1fr 1fr;
-}
+} */
 .cartInput {
   display: flex;
   align-items: center;
-  height: 8vmax;
+  height: auto;
 }
 .cartInput > button {
   border: none;
@@ -86,7 +86,7 @@
   font: 400 0.8vmax;
   color: black;
 }
-.cartSubtotal {
+/* .cartSubtotal {
   display: flex;
   padding: 0.5vmax;
   height: 8vmax;
@@ -127,24 +127,11 @@
   margin: 1vmax 4vmax;
   cursor: pointer;
   border-radius: 30px;
-}
+} */
 
 @media screen and (max-width: 600px) {
-  .cartPage {
-    padding: 0;
-    min-height: 60vh;
-  }
-  .cartHeader {
-    width: 100%;
-    font: 300 1.7vmax 'Roboto';
-    grid-template-columns: 3fr 1fr 1fr;
-  }
-  .cartContainer {
-    width: 100%;
-    grid-template-columns: 3fr 1fr 1fr;
-  }
   .cartInput {
-    height: 20vmax;
+    height: auto;
   }
   .cartInput > button {
     padding: 1.5vmax;
@@ -154,22 +141,14 @@
     padding: 1.5vmax;
     font: 400 1.8vmax;
   }
-  .cartSubtotal {
-    padding: 1.5vmax;
-    height: 20vmax;
-    font: 300 2vmax;
-  }
-  .cartGrossProfit {
-    display: grid;
-    grid-template-columns: 0fr 2fr;
-  }
-  .cartGrossProfitBox {
-    padding: 2vmax;
-    font: 300 2vmax;
-  }
-  .checkOutBtn > button {
-    padding: 1vmax;
-    width: 100%;
-    font: 300 1vmax;
-  }
+}
+.css-46bh2p-MuiCardContent-root {
+  padding: 0 0 0 16px !important;
+}
+.css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+  margin-top: 5px !important;
+  font-size: x-small !important;
+}
+.css-ug0yqg-MuiGrid-root {
+  justify-content: space-evenly;
 }

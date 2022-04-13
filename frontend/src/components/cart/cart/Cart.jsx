@@ -1,12 +1,20 @@
 import React, { Fragment } from 'react'
-import CartItemCard from '../cartItem/CartItem'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart'
-import { Button, Typography } from '@mui/material'
+import {
+  Grid,
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+} from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addItemsToCart,
   removeItemsFromCart,
 } from '../../../redux/actions/cartAction'
+import { addToWishList } from '../../../redux/actions/wishListAction'
 import './Cart.css'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -24,74 +32,145 @@ const Cart = () => {
     if (1 >= quantity) return
     dispatch(addItemsToCart(id, newQty))
   }
-  const deleteCartItems = (id) => {
-    dispatch(removeItemsFromCart(id))
-  }
   const checkoutHandler = () => {
     navigate('/shipping')
     // navigate('/login?redirect=shipping')
   }
+  console.log('cartItems', cartItems)
   return (
     <Fragment>
       {cartItems.length === 0 ? (
         <div className='emptyCart'>
           <RemoveShoppingCartIcon />
-          <Typography>No Products in Your Cart</Typography>
-          <Link to='/products'>View Products</Link>
+          <Typography>No items in Your Cart</Typography>
+          <Link to='/items'>View items</Link>
         </div>
       ) : (
         <Fragment>
-          <div className='cartPage'>
-            <div className='cartHeader'>
-              <p>Product</p>
-              <p>Quantity</p>
-              <p>Subtotal</p>
-            </div>
-            {cartItems &&
-              cartItems.map((item) => (
-                <div className='cartContainer'>
-                  <CartItemCard item={item} deleteCartItems={deleteCartItems} />
-                  <div className='cartInput'>
-                    <button
-                      onClick={() =>
-                        decreaseQuantity(item.product, item.quantity)
-                      }
-                    >
-                      -
-                    </button>
-                    <input type='number' value={item.quantity} readOnly />
-                    <button
-                      onClick={() =>
-                        increaseQuantity(
-                          item.product,
-                          item.stock,
-                          item.quantity
-                        )
-                      }
-                    >
-                      +
-                    </button>
-                  </div>
-                  <p className='cartSubtotal'>{`${
-                    item.price * item.quantity
-                  }SEK`}</p>
-                </div>
-              ))}
-            <div className='cartGrossTotal'>
-              <div></div>
-              <div className='cartGrossTotalBox'>
-                <p>Gross Total</p>
-                <p>{`${cartItems.reduce(
+          <Grid
+            container
+            justifyContent='space-evenly'
+            alignItems='center'
+            gap={0.5}
+            sx={{
+              // height: '120vh',
+              marginLeft: '0.5%',
+              position: 'relative',
+              top: '11vh',
+            }}
+          >
+            <Grid
+              container
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+              sx={{ padding: '10px', justifyContent: 'center' }}
+            >
+              <Box sx={{ display: 'flex' }}>
+                <Typography variant='h6'>Gross Total: </Typography>
+                <Typography variant='h6'>{`${cartItems.reduce(
                   (acc, item) => acc + item.quantity * item.price,
                   0
-                )}SEK`}</p>
-              </div>
-              <div></div>
-              <div className='checkOutBtn'>
-                <Button onClick={checkoutHandler}>Check Out</Button>
-              </div>
-            </div>
-          </div>
+                )}SEK`}</Typography>
+              </Box>
+              <Grid
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+                sx={{ justifyContent: 'center' }}
+              >
+                <Button className='button' onClick={checkoutHandler}>
+                  Check Out
+                </Button>
+              </Grid>
+            </Grid>
+            {cartItems &&
+              cartItems.map((item) => (
+                <Grid container lg={3} md={4} sm={6} xs={12}>
+                  <Card
+                    sx={{ margin: '10px 0', width: '250px', height: '150px' }}
+                  >
+                    <Box sx={{ display: 'flex' }}>
+                      <Box>
+                        <CardMedia
+                          component='img'
+                          height='100'
+                          image={item.image}
+                          alt='item'
+                        />
+                        <Button
+                          className='button'
+                          size='small'
+                          variant='contained'
+                          onClick={(id) => {
+                            dispatch(removeItemsFromCart(item.product))
+                            dispatch(() =>
+                              dispatch(addToWishList(item.product))
+                            )
+                          }}
+                        >
+                          Save for later
+                        </Button>
+                      </Box>
+                      <Box>
+                        <CardContent>
+                          <Typography
+                            gutterBottom
+                            variant='subtitle2'
+                            component='div'
+                          >
+                            {item.name}
+                          </Typography>
+                          <Typography
+                            variant='subtitle2'
+                            sx={{ flexGrow: 0.5 }}
+                          >
+                            {item.price} SEK
+                          </Typography>
+                          <div className='cartInput'>
+                            <button
+                              onClick={() =>
+                                decreaseQuantity(item.item, item.quantity)
+                              }
+                            >
+                              -
+                            </button>
+                            <input
+                              type='number'
+                              value={item.quantity}
+                              readOnly
+                            />
+                            <button
+                              onClick={() =>
+                                increaseQuantity(
+                                  item.item,
+                                  item.stock,
+                                  item.quantity
+                                )
+                              }
+                            >
+                              +
+                            </button>
+                          </div>
+                          <Button
+                            className='button'
+                            size='small'
+                            variant='contained'
+                            onClick={(id) => {
+                              dispatch(removeItemsFromCart(item.product))
+                            }}
+                          >
+                            Remove
+                          </Button>
+                        </CardContent>
+                      </Box>
+                    </Box>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
         </Fragment>
       )}
     </Fragment>

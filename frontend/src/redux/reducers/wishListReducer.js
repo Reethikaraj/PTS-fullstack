@@ -13,7 +13,6 @@ export const wishListReducer = (state = initialState, action) => {
       if (isItemExist) {
         return {
           ...state,
-          itemExists: false,
           wishList: state.wishList.map((i) =>
             i.product === isItemExist.product ? item : i
           ),
@@ -21,15 +20,15 @@ export const wishListReducer = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          itemExists: false,
           wishList: [...state.wishList, item],
         }
       }
     case 'REMOVE_WISHLIST_ITEM':
       return {
         ...state,
-        itemExists: true,
-        wishList: state.wishList.filter((item) => item !== action.payload.item),
+        itemExists: false,
+        wishList: state.wishList.filter((i) => i.product !== action.payload),
+        // cartItems: state.cartItems.filter((i) => i.product !== action.payload),
       }
     case 'CLEAR_WISHLIST':
       return {

@@ -19,8 +19,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const themes = useSelector((state) => state.themeReducer)
   const navigate = useNavigate()
-  console.log(user)
-
+  console.log('user', user)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar

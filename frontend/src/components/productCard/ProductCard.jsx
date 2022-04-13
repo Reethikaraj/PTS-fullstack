@@ -15,10 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { addItemsToCart } from '../../redux/actions/cartAction'
-import {
-  addToWishList,
-  removeFromWishList,
-} from '../../redux/actions/wishListAction'
+import { addToWishList } from '../../redux/actions/wishListAction'
 import './ProductCard.css'
 const Product = ({ product }) => {
   // Rating stars settings
@@ -32,19 +29,21 @@ const Product = ({ product }) => {
   }
   const dispatch = useDispatch()
   const alert = useAlert()
-  const { itemExists } = useSelector((state) => state.wishListReducer)
+  // const { itemExists } = useSelector((state) => state.wishListReducer)
+  const { cartItems } = useSelector((state) => state.cartReducer)
   const addToCartHandler = () => {
     dispatch(addItemsToCart(product._id, 1))
     alert.success('Item added to cart')
   }
   const addToWishListHandler = () => {
+    console.log('id', product._id)
     dispatch(addToWishList(product._id))
     alert.success('Item added to Wishlist')
   }
-  const RemoveWishListHandler = () => {
-    dispatch(removeFromWishList(product._id))
-    alert.success('Item Removed from  Wishlist')
-  }
+  // const RemoveWishListHandler = () => {
+  //   dispatch(removeFromWishList(product._id))
+  //   alert.success('Item Removed from  Wishlist')
+  // }
   return (
     <Fragment>
       <Box>
@@ -72,25 +71,37 @@ const Product = ({ product }) => {
                 {product.price} SEK
               </Typography>
 
-              {itemExists === true ? (
+              {/* {itemExists === true ? (
                 <FavoriteIcon onClick={RemoveWishListHandler} />
               ) : (
                 <FavoriteBorderIcon
-                  onClick={addToWishListHandler}
+                  onClick={(id) => dispatch(addToWishList(product._id))}
                   className='icon'
                 />
-              )}
+              )} */}
+              <FavoriteBorderIcon onClick={addToWishListHandler} />
             </Box>
           </CardContent>
           <CardActions>
-            <Button
-              className='button'
-              size='small'
-              variant='contained'
-              onClick={addToCartHandler}
-            >
-              Add to cart
-            </Button>
+            {cartItems.map((item) => item.product).includes(product._id) ? (
+              <Button
+                className='button'
+                size='small'
+                variant='contained'
+                onClick={addToCartHandler}
+              >
+                Item in Cart
+              </Button>
+            ) : (
+              <Button
+                className='button'
+                size='small'
+                variant='contained'
+                onClick={addToCartHandler}
+              >
+                Add to cart
+              </Button>
+            )}
           </CardActions>
         </Card>
       </Box>
