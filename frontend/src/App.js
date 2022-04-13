@@ -20,6 +20,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { loadUser } from './redux/actions/userAction'
 import storeFactory from './redux/store/store'
+import WishList from './components/wishList/WishList'
 
 import './App.css'
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route path='/account' element={<Profile />} />
           <Route path='/me/update' element={<UpdateProfile />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/wishlist' element={<WishList />} />
           <Route path='/shipping' element={<Shipping />} />
           <Route path='/order/confirm' element={<ConfirmOrder />} />
           {/* </Route> */}

@@ -53,7 +53,6 @@ const UpdateProfile = () => {
     }
     if (isUpdated) {
       alert.success('Profile Updated Successfully')
-      // dispatch(loadUser())
       navigate('/account')
       dispatch({
         type: 'UPDATE_PROFILE_RESET',
@@ -67,7 +66,10 @@ const UpdateProfile = () => {
       ) : (
         <Fragment>
           <MetaData title='Update Profile' />
-          <Container className='updateProfileContainer '>
+          <Container
+            className='updateProfileContainer'
+            sx={{ position: 'relative', top: '13vh' }}
+          >
             <Box
               // Since we are uploading image also
               encType='multipart/form-data'

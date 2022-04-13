@@ -40,7 +40,7 @@ const LoginRegister = () => {
   const [avatarPreview, setAvatarPreview] = useState('/assets/profile.png')
   // Login
   const loginSubmit = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     dispatch(login(loginEmail, loginPassword))
   }
   // Register
@@ -72,7 +72,6 @@ const LoginRegister = () => {
   // const redirect = Location.search ? Location.search.split('=')[1] : '/account'
   // Display errors
   useEffect(() => {
-    console.log('dispatching from user component')
     if (error) {
       alert.error(error)
       dispatch(clearErrors())
@@ -103,7 +102,11 @@ const LoginRegister = () => {
         <Loader />
       ) : (
         <Fragment>
-          <Container className='signin' maxWidth='xs'>
+          <Container
+            maxWidth='xs'
+            className='signin'
+            sx={{ position: 'relative', top: '12vh' }}
+          >
             <Box className='.loginSignUpBox '>
               <Box className='login_signUp_toggle'>
                 <Box>

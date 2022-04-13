@@ -45,7 +45,7 @@ const ProductDetails = () => {
   }
   const addToCartHandler = () => {
     dispatch(addItemsToCart(params.id, quantity))
-    alert.success('Items added to cart')
+    alert.success('Item added to cart')
   }
   // Getting details
   useEffect(() => {
@@ -66,7 +66,7 @@ const ProductDetails = () => {
     activeColor: 'tomato',
     value: product?.rating,
     isHalf: true,
-    size: window.innerWidth < 600 ? 20 : 25,
+    size: 18,
   }
   return (
     <Fragment>
@@ -75,7 +75,13 @@ const ProductDetails = () => {
       ) : ( */}
       <Fragment>
         {product && (
-          <Container className='CardDetails'>
+          <Container
+            className='CardDetails'
+            sx={{
+              position: 'relative',
+              top: '12vh',
+            }}
+          >
             <Card>
               <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
@@ -91,7 +97,7 @@ const ProductDetails = () => {
                   </Carousel>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <CardContent>
+                  <CardContent sx={{ textAlign: 'justify' }}>
                     <Typography variant='h6'>{product?.name}</Typography>
                     <Typography variant='caption'>
                       Product #{product?._id}
@@ -99,49 +105,65 @@ const ProductDetails = () => {
                     <Typography variant='body2'>
                       {product?.description?.about}
                     </Typography>
-                    <ReactStars {...options} />
-                    <Typography variant='caption'>
-                      ({product?.numOfReviews} Reviews)
-                    </Typography>
-                    <Typography variant='body1'>{`${product?.price}SEK`}</Typography>
-                    <RemoveCircleIcon onClick={decreaseQuantity} />
-                    <input
-                      className='quantity'
-                      readOnly
-                      type='number'
-                      value={quantity}
-                    />
-                    <AddCircleIcon onClick={increaseQuantity} />
-                    <Button
-                      className='button'
-                      variant='contained'
-                      onClick={addToCartHandler}
-                    >
-                      Add to Cart
-                    </Button>
-                    <Box>
-                      <Typography variant='subtitle'>
-                        Status:
-                        <Typography
-                          variant='subtitle'
-                          className={
-                            product?.quantity < 1 ? 'redColor' : 'greenColor'
-                          }
-                        >
-                          {product?.quantity < 1 ? 'OutOfStock' : 'InStock'}
-                        </Typography>
+                    <Box sx={{ display: 'flex' }}>
+                      <ReactStars {...options} />
+                      <Typography variant='caption' sx={{ paddingTop: '3px' }}>
+                        ({product?.numOfReviews} Reviews)
                       </Typography>
                     </Box>
-                    {/* Features */}
-                    <Typography variant='subtitle'>Features:</Typography>
-                    {product.description.features &&
-                      product?.description.features.map((feature, i) => (
-                        <Typography variant='body2'>{feature}</Typography>
-                      ))}
-                    <Button className='button' variant='contained'>
-                      Submit Review
-                    </Button>
+                    <Typography variant='body1'>{`${product?.price}SEK`}</Typography>
+                    <Box sx={{ display: 'flex' }}>
+                      <RemoveCircleIcon onClick={decreaseQuantity} />
+                      <Typography
+                        variant='caption'
+                        sx={{
+                          border: '2px solid black',
+                          height: '18px',
+                          width: '15px',
+                          paddingLeft: '4px',
+                        }}
+                      >
+                        {quantity}
+                      </Typography>
+                      <AddCircleIcon onClick={increaseQuantity} />
+                      <Button
+                        className='button'
+                        variant='contained'
+                        onClick={addToCartHandler}
+                        size='small'
+                        sx={{ marginLeft: '10px' }}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Box>
+                    <Box>
+                      <Typography
+                        sx={{ fontWeight: 'bold' }}
+                        variant='subtitle2'
+                        className={
+                          product?.quantity < 1 ? 'redColor' : 'greenColor'
+                        }
+                      >
+                        {product?.quantity < 1 ? 'OutOfStock' : 'InStock'}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      {/* Features */}
+                      <Typography variant='subtitle2'>Features:</Typography>
+                      {product.description.features &&
+                        product?.description.features.map((feature, i) => (
+                          <Typography variant='caption'> {feature}</Typography>
+                        ))}
+                    </Box>
                   </CardContent>
+                  <Button
+                    className='button'
+                    variant='contained'
+                    size='small'
+                    sx={{ marginLeft: '15px' }}
+                  >
+                    Submit Review
+                  </Button>
                 </Grid>
               </Grid>
             </Card>

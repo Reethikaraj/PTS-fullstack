@@ -3,10 +3,11 @@
 }
 .CarouselImage {
   width: 100%;
-  max-width: 20vmax;
+  height: 100%;
+  max-width: 25vmax;
 }
 .Carousel {
-  padding: 1vmax;
+  /* padding: 1vmax; */
   width: 100%;
   max-width: 25vmax;
   height: 100%;

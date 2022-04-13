@@ -14,7 +14,6 @@ export const processPayment = catchAsyncErrors(async (req, res, next) => {
     .status(200)
     .json({ success: true, client_secret: myPayment.client_secret })
 })
-
 export const sendStripeApiKey = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,

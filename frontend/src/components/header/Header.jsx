@@ -19,6 +19,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const themes = useSelector((state) => state.themeReducer)
   const navigate = useNavigate()
+  console.log(user)
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -32,13 +33,13 @@ const Header = () => {
         <Toolbar className='header'>
           <Box sx={{ flexGrow: 2 }}>
             {isAuthenticated === true ? (
-              <Box className='tooltip'>
+              <Box>
                 <img
-                  className='profileImg'
                   src={user?.avatar?.url}
-                  alt={user.name}
+                  alt=''
+                  onClick={() => navigate('/account')}
                 />
-                <span className='tooltiptext'>Profile Settings</span>
+                <span>{user.name}</span>
               </Box>
             ) : (
               <Box className='tooltip'>

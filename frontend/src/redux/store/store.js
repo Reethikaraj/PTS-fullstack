@@ -8,6 +8,7 @@ import { userReducer } from '../reducers/userReducer'
 import { profileReducer } from '../reducers/profileReducer'
 import { cartReducer } from '../reducers/cartReducer'
 import { orderReducer } from '../reducers/orderReducer'
+import { wishListReducer } from '../reducers/wishListReducer'
 
 // Combining all the reducers
 export const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ export const rootReducer = combineReducers({
   userReducer: userReducer,
   profileReducer: profileReducer,
   cartReducer: cartReducer,
+  wishListReducer: wishListReducer,
   orderReducer: orderReducer,
 })
 

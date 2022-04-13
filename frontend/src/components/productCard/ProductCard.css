@@ -1,40 +1,18 @@
-.productCard {
-  width: 14vmax;
-  display: flex;
-  flex-direction: column;
-  margin: 1vmax;
-  text-decoration: none;
-  color: var(--text-primary);
-  align-items: center;
-  transition: all 0.5s;
-  padding: 2%;
-  border-style: double;
-  border-color: var(--background-primary);
+.css-46bh2p-MuiCardContent-root {
+  padding-bottom: 0 !important;
 }
-.productCard > img {
-  width: 12vmax;
+.button {
+  color: var(--text-secondary) !important;
+  background-image: linear-gradient(
+    to right,
+    var(--background-secondary),
+    var(--background-primary)
+  );
+  border: 1px solid var(--text-primary) !important;
 }
-
-.productCard > div {
-  margin: 0.3vmax;
-  display: flex;
-  justify-content: flex-start;
-}
-.productCard > div > span {
-  margin-top: 0.4vmax;
-}
-
-.productCard > p {
-  margin: 1vmax 0.5vmax;
-  margin-bottom: 0;
-}
-
-.productCard > span {
-  margin: 0.5vmax;
-  color: tomato;
-}
-
-.productCard:hover {
-  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
-  transform: translateY(-1vmax);
+@media only screen and (max-width: 400px) {
+  .card {
+    max-width: 130px !important;
+    height: 380px !important;
+  }
 }

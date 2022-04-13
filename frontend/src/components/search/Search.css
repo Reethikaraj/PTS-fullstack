@@ -1,10 +1,9 @@
-.searchBox {
+/* .searchBox {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2vmax;
 }
-
 .searchBox > input[type='text'] {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
   background-color: white;
@@ -18,7 +17,6 @@
   box-sizing: border-box;
   height: 8%;
 }
-
 .searchBox > input[type='submit'] {
   height: 8%;
   border-radius: 0%;
@@ -48,4 +46,4 @@
     width: 30%;
     font: 300 4vw 'Roboto';
   }
-}
+} */

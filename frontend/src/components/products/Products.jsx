@@ -7,6 +7,7 @@ import ProductCard from '../productCard/ProductCard'
 import {
   Container,
   Grid,
+  Button,
   Pagination,
   Slider,
   Typography,
@@ -48,7 +49,7 @@ const Products = () => {
       alert.error(error)
       dispatch(clearErrors())
     }
-    dispatch(getProduct(params.keyword, currentPage, price, category, rating))
+    dispatch(getProduct(category))
   }, [
     dispatch,
     error,
@@ -65,81 +66,24 @@ const Products = () => {
       {loading ? (
         <Loader />
       ) : (
-        <Container className='products'>
-          <Grid
-            container
-            spacing={0.5}
-            justifyContent='center'
-            alignItems='center'
-          >
-            <Grid lg={12} md={12} sm={12} xs={12}>
-              <h2 className='productsHeading'>Products</h2>
-              <Search />
-              <Box className='filterBox'>
-                <Box className='innerBox'>
-                  {/* Filtering by price */}
-                  <Typography variant='body2'>Price</Typography>
-                  <Slider
-                    className='slider'
-                    value={price}
-                    onChange={priceHandler}
-                    valueLabelDisplay='auto'
-                    aria-labelledby='range-slider'
-                    min={0}
-                    max={500}
-                  />
-                </Box>
-                <Box className='innerBox'>
-                  {/* Filtering by category */}
-                  <Typography variant='body2'>Categories</Typography>
-                  <ul className='categoryBox'>
-                    {categories.map((category) => (
-                      <li
-                        className='category-link'
-                        key={category}
-                        onClick={() => setCategory(category)}
-                      >
-                        {category}
-                      </li>
-                    ))}
-                  </ul>
-                </Box>
-                <Box className='innerBox'>
-                  {/* Filtering by rating */}
-                  <Typography variant='body2' component='legend'>
-                    Ratings Above
-                  </Typography>
-                  <Rating
-                    className='slider'
-                    name='simple-controlled'
-                    onChange={(e, newRating) => {
-                      setRating(newRating)
-                    }}
-                    value={rating}
-                    min={0}
-                    max={5}
-                  />
-                </Box>
-              </Box>
-            </Grid>
-
-            {products &&
-              products.map((product) => (
-                <Grid lg={3} md={4} sm={4} sx={6}>
-                  <ProductCard product={product} />
-                </Grid>
-              ))}
-
-            {resultsPerPage < productCount && (
-              <Pagination
-                className='pagination'
-                onChange={setCurrentPageNo}
-                count={pageCount}
-                page={currentPage}
-              />
-            )}
-          </Grid>
-        </Container>
+        <Grid
+          container
+          justifyContent='center'
+          alignItems='center'
+          sx={{
+            height: '140vh',
+            marginLeft: '0.5%',
+            position: 'relative',
+            top: '11vh',
+          }}
+        >
+          {products &&
+            products.map((product) => (
+              <Grid container lg={1.5} md={3} sm={4} xs={5.5}>
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+        </Grid>
       )}
     </Fragment>
   )

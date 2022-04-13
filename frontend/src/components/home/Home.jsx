@@ -7,9 +7,11 @@ import Loader from '../loading/Loader'
 import { useAlert } from 'react-alert'
 import Carousel from 'react-material-ui-carousel'
 import './Home.css'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const alert = useAlert()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { loading, error, products } = useSelector(
     (state) => state.productReducer
@@ -34,7 +36,10 @@ const Home = () => {
         <React.Fragment>
           <MetaData title='PTS' />
           {/* Banner */}
-          <Box className='Banner'>
+          <Box
+            className='Banner'
+            sx={{ position: 'relative', top: '10.5vh', height: '100vh' }}
+          >
             <Container maxWidth='lg'>
               <Grid container spacing={1.5}>
                 <Grid item xs={12} sm={6}>
@@ -48,18 +53,17 @@ const Home = () => {
                         Find amazing Products below
                       </Typography>
 
-                      <a href='/products'>
-                        <Carousel className='Carousel'>
-                          {products &&
-                            products.map((product) => (
-                              <img
-                                className='CarouselImage'
-                                src={product.images[0].url}
-                                alt='product'
-                              />
-                            ))}
-                        </Carousel>
-                      </a>
+                      <Carousel className='Carousel'>
+                        {products &&
+                          products.map((product) => (
+                            <img
+                              onClick={() => navigate('/products')}
+                              className='CarouselImage'
+                              src={product.images[0].url}
+                              alt='product'
+                            />
+                          ))}
+                      </Carousel>
                     </Box>
                   </Box>
                 </Grid>

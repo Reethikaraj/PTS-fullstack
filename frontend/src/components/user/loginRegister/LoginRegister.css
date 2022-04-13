@@ -53,3 +53,8 @@
 .shiftToRight {
   transform: translateX(100%);
 }
+@media only screen and (max-width: 450px) {
+  .css-1kp3ott-MuiContainer-root {
+    max-width: 250px !important;
+  }
+}
