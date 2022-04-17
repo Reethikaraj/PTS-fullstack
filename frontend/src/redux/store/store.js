@@ -7,7 +7,7 @@ import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
 import { profileReducer } from '../reducers/profileReducer'
 import { cartReducer } from '../reducers/cartReducer'
-import { orderReducer } from '../reducers/orderReducer'
+import { newOrderReducer, myOrdersReducer } from '../reducers/orderReducer'
 import { wishListReducer } from '../reducers/wishListReducer'
 
 // Combining all the reducers
@@ -19,27 +19,18 @@ export const rootReducer = combineReducers({
   profileReducer: profileReducer,
   cartReducer: cartReducer,
   wishListReducer: wishListReducer,
-  orderReducer: orderReducer,
+  newOrderReducer: newOrderReducer,
+  myOrdersReducer: myOrdersReducer,
 })
-
 function saveToLocalStorage(state) {
   const localStorageState = JSON.stringify(state)
   localStorage.setItem('state', localStorageState)
 }
-
 function loadFromLocalStorage() {
   const localStorageState = localStorage.getItem('state')
   if (localStorageState === null) return undefined
   return JSON.parse(localStorageState)
 }
-// const tokenFromStorage = localStorage.getItem('token')
-//   ? JSON.parse(localStorage.getItem('token'))
-//   : null
-
-// const initialState = {
-//   userLogin: { token: tokenFromStorage },
-// }
-
 const storeFactory = () => {
   const middleware = [thunk]
   const reduxStore = createStore(

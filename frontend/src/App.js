@@ -18,13 +18,13 @@ import Payment from './components/cart/payment/Payment'
 import axios from 'axios'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import { loadUser } from './redux/actions/userAction'
 import storeFactory from './redux/store/store'
 import WishList from './components/wishList/WishList'
 
 import './App.css'
+import OrderSuccess from './components/cart/orderSuccess/OrderSuccess'
+import MyOrders from './components/orders/myOrders/MyOrders'
 function App() {
-  const store = storeFactory()
   const themes = useSelector((state) => state.themeReducer.theme)
   const [stripeApiKey, setStripeApiKey] = useState('')
   async function getStripeApiKey() {
@@ -34,8 +34,6 @@ function App() {
     setStripeApiKey(data.stripeApiKey)
   }
   useEffect(() => {
-    store.dispatch(loadUser())
-    console.log('loader')
     getStripeApiKey()
   })
   const stripePromise = loadStripe(stripeApiKey)
@@ -50,24 +48,22 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:keyword' element={<Products />} />
           <Route path='/login' element={<LoginRegister />} />
-          {/* <Route element={<ProtectedRoute />}> */}
           <Route path='/account' element={<Profile />} />
           <Route path='/me/update' element={<UpdateProfile />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishlist' element={<WishList />} />
           <Route path='/shipping' element={<Shipping />} />
           <Route path='/order/confirm' element={<ConfirmOrder />} />
-          {/* </Route> */}
-          <Route element={<ProtectedRoute />}>
-            <Route
-              path='/process/payment'
-              element={
-                <Elements stripe={stripePromise}>
-                  <Payment />
-                </Elements>
-              }
-            />
-          </Route>
+          <Route
+            path='/process/payment'
+            element={
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
+            }
+          />
+          <Route path='/success' element={<OrderSuccess />} />
+          <Route path='/orders' element={<MyOrders />} />
         </Routes>
         <Footer />
       </BrowserRouter>

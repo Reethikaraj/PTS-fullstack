@@ -21,6 +21,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Cart = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { isAuthenticated } = useSelector((state) => state.userReducer)
   const { cartItems } = useSelector((state) => state.cartReducer)
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1
@@ -33,10 +34,9 @@ const Cart = () => {
     dispatch(addItemsToCart(id, newQty))
   }
   const checkoutHandler = () => {
-    navigate('/shipping')
-    // navigate('/login?redirect=shipping')
+    isAuthenticated === true ? navigate('/shipping') : navigate('/login')
   }
-  console.log('cartItems', cartItems)
+  // console.log('cartItems', cartItems)
   return (
     <Fragment>
       {cartItems.length === 0 ? (

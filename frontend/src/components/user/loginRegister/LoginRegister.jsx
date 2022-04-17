@@ -21,7 +21,6 @@ const LoginRegister = () => {
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.userReducer
   )
-  console.log('error', error)
   // useRef for switching tabs
   const loginTab = useRef(null)
   const registerTab = useRef(null)

@@ -4,9 +4,6 @@ import axios from 'axios'
 export const updateProfile = (userData) => async (dispatch, getState) => {
   try {
     dispatch({ type: 'UPDATE_PROFILE_REQUEST ' })
-    // const {
-    //   userLogin: { token },
-    // } = getState()
     const token = localStorage.getItem('token')
     const config = {
       headers: {
@@ -14,7 +11,7 @@ export const updateProfile = (userData) => async (dispatch, getState) => {
         'Content-Type': 'multipart/form-data',
       },
     }
-    console.log('token', token, 'userData', userData)
+    // console.log('token', token, 'userData', userData)
     const { data } = await axios.put(
       'http://localhost:5000/api/v1/user/me/update',
       userData,

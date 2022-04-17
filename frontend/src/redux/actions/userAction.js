@@ -50,17 +50,17 @@ export const register = (userData) => async (dispatch) => {
   }
 }
 
-// Load User
-export const loadUser = () => async (dispatch) => {
-  console.log('dispatching from loadUser, user.Action')
-  try {
-    dispatch({ type: 'LOAD_USER_REQUEST' })
-    const { data } = await axios.get('http://localhost:5000/api/v1/user/me')
-    dispatch({ type: 'LOAD_USER_SUCCESS', payload: data.user })
-  } catch (error) {
-    dispatch({ type: 'LOAD_USER_FAIL', payload: error.response.data.message })
-  }
-}
+// // Load User
+// export const loadUser = () => async (dispatch) => {
+//   console.log('dispatching from loadUser, user.Action')
+//   try {
+//     dispatch({ type: 'LOAD_USER_REQUEST' })
+//     const { data } = await axios.get('http://localhost:5000/api/v1/user/me')
+//     dispatch({ type: 'LOAD_USER_SUCCESS', payload: data.user })
+//   } catch (error) {
+//     dispatch({ type: 'LOAD_USER_FAIL', payload: error.response.data.message })
+//   }
+// }
 
 // Logout User
 export const logout = () => async (dispatch) => {

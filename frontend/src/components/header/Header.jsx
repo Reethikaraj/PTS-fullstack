@@ -19,7 +19,8 @@ const Header = () => {
   const dispatch = useDispatch()
   const themes = useSelector((state) => state.themeReducer)
   const navigate = useNavigate()
-  console.log('user', user)
+  const { cartItems } = useSelector((state) => state.cartReducer)
+  // console.log('user', user)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -81,10 +82,13 @@ const Header = () => {
               <span className='tooltiptext'>Favorites</span>
             </Box>
             <Box className='tooltip'>
-              <ShoppingCartIcon
-                className='icon'
-                onClick={() => navigate('/cart')}
-              />
+              <Box sx={{ display: 'flex' }}>
+                <ShoppingCartIcon
+                  className='icon'
+                  onClick={() => navigate('/cart')}
+                />
+                <span className='cartLength'>{cartItems?.length}</span>
+              </Box>
               <span className='tooltiptext'>Cart</span>
             </Box>
           </Box>

@@ -12,3 +12,7 @@
 .MuiPaper-root {
   color: var(--background-primary);
 }
+
+.MuiTypography-body1 {
+  font-size: 10px;
+}

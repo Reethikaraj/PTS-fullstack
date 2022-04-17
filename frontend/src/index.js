@@ -10,6 +10,7 @@ import AlertTemplate from 'react-alert-template-basic'
 const options = {
   position: positions.BOTTOM_CENTER,
   transition: transitions.SCALE,
+  // timeout: '5000s'
 }
 const reduxStore = storeFactory()
 ReactDOM.render(
