@@ -43,7 +43,7 @@ const Cart = () => {
         <div className='emptyCart'>
           <RemoveShoppingCartIcon />
           <Typography>No items in Your Cart</Typography>
-          <Link to='/items'>View items</Link>
+          <Link to='/products'>View products</Link>
         </div>
       ) : (
         <Fragment>

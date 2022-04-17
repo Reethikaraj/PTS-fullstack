@@ -19,6 +19,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey'
 import { useNavigate } from 'react-router-dom'
 import { Container } from '@mui/material'
 import { useDispatch } from 'react-redux'
+import { clearCart } from '../../../redux/actions/cartAction'
 import { clearErrors, createOrder } from '../../../redux/actions/orderAction'
 
 const Payment = () => {
@@ -91,6 +92,7 @@ const Payment = () => {
             status: result.paymentIntent.status,
           }
           dispatch(createOrder(order))
+          dispatch(clearCart())
           // Navigating to /success
           navigate('/success')
         } else {

@@ -48,6 +48,30 @@ export const myOrders = () => async (dispatch) => {
   }
 }
 
+// Get Order Details
+export const getOrderDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'ORDER_DETAILS_REQUEST' })
+    const token = localStorage.getItem('token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+    const { data } = await axios.get(
+      `http://localhost:5000/api/v1/order/${id}`,
+      config
+    )
+    dispatch({ type: 'ORDER_DETAILS_SUCCESS', payload: data.order })
+  } catch (error) {
+    dispatch({
+      type: 'ORDER_DETAILS_FAIL',
+      payload: error.response.data.message,
+    })
+  }
+}
+
 // Get All Orders (admin)
 export const getAllOrders = () => async (dispatch) => {
   try {
@@ -114,30 +138,6 @@ export const deleteOrder = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: 'DELETE_ORDER_FAIL',
-      payload: error.response.data.message,
-    })
-  }
-}
-
-// Get Order Details
-export const getOrderDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: 'ORDER_DETAILS_REQUEST' })
-    const token = localStorage.getItem('token')
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    }
-    const { data } = await axios.get(
-      `http://localhost:5000/api/v1/order/${id}`,
-      config
-    )
-    dispatch({ type: 'ORDER_DETAILS_SUCCESS', payload: data.order })
-  } catch (error) {
-    dispatch({
-      type: 'ORDER_DETAILS_FAIL',
       payload: error.response.data.message,
     })
   }

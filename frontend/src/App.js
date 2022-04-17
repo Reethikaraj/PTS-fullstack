@@ -24,6 +24,7 @@ import WishList from './components/wishList/WishList'
 import './App.css'
 import OrderSuccess from './components/cart/orderSuccess/OrderSuccess'
 import MyOrders from './components/orders/myOrders/MyOrders'
+import OrderDetails from './components/orders/orderDetails/OrderDetails'
 function App() {
   const themes = useSelector((state) => state.themeReducer.theme)
   const [stripeApiKey, setStripeApiKey] = useState('')
@@ -64,6 +65,7 @@ function App() {
           />
           <Route path='/success' element={<OrderSuccess />} />
           <Route path='/orders' element={<MyOrders />} />
+          <Route path='/order/:id' element={<OrderDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

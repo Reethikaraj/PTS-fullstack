@@ -6,10 +6,12 @@ import ContactPhoneIcon from '@mui/icons-material/ContactPhone'
 import WorkIcon from '@mui/icons-material/Work'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './Footer.css'
 
 const Footer = () => {
   const navigate = useNavigate()
+  const { orders } = useSelector((state) => state.myOrdersReducer)
   return (
     <footer>
       <Box
@@ -34,10 +36,15 @@ const Footer = () => {
           />
           <span className='tooltiptext'>Products</span>
         </Box>
-        <Box className='tooltip'>
-          <WorkIcon className='icon' onClick={() => navigate('/orders')} />
-          <span className='tooltiptext'>Orders</span>
-        </Box>
+        {orders?.orderItems?.length ? (
+          ''
+        ) : (
+          <Box className='tooltip'>
+            <WorkIcon className='icon' onClick={() => navigate('/orders')} />
+            <span className='tooltiptext'>Orders</span>
+          </Box>
+        )}
+
         <Box className='tooltip'>
           <ContactPhoneIcon
             className='icon'

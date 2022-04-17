@@ -31,6 +31,7 @@ const ProductDetails = () => {
   const { product, loading, error } = useSelector(
     (state) => state.productDetailsReducer
   )
+  const { cartItems } = useSelector((state) => state.cartReducer)
   // Cart
   const [quantity, setQuantity] = useState(1)
   const increaseQuantity = () => {
@@ -125,16 +126,30 @@ const ProductDetails = () => {
                       >
                         {quantity}
                       </Typography>
-                      <AddCircleIcon onClick={increaseQuantity} />
-                      <Button
-                        className='button'
-                        variant='contained'
-                        onClick={addToCartHandler}
-                        size='small'
-                        sx={{ marginLeft: '10px' }}
-                      >
-                        Add to Cart
-                      </Button>
+                      <AddCircleIcon onClick={increaseQuantity} />{' '}
+                      {cartItems
+                        .map((item) => item.product)
+                        .includes(product._id) ? (
+                        <Button
+                          className='button'
+                          size='small'
+                          variant='contained'
+                          onClick={addToCartHandler}
+                        >
+                          Item in Cart
+                        </Button>
+                      ) : (
+                        <Button
+                          disabled={product.stock < 1 ? true : false}
+                          className='button'
+                          variant='contained'
+                          onClick={addToCartHandler}
+                          size='small'
+                          sx={{ marginLeft: '10px' }}
+                        >
+                          Add to Cart
+                        </Button>
+                      )}
                     </Box>
                     <Box>
                       <Typography

@@ -15,7 +15,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { addItemsToCart } from '../../redux/actions/cartAction'
-import { addToWishList } from '../../redux/actions/wishListAction'
+import {
+  addToWishList,
+  removeFromWishList,
+} from '../../redux/actions/wishListAction'
 import './ProductCard.css'
 const Product = ({ product }) => {
   // Rating stars settings
@@ -29,7 +32,7 @@ const Product = ({ product }) => {
   }
   const dispatch = useDispatch()
   const alert = useAlert()
-  // const { itemExists } = useSelector((state) => state.wishListReducer)
+  const { wishList } = useSelector((state) => state.wishListReducer)
   const { cartItems } = useSelector((state) => state.cartReducer)
   const addToCartHandler = () => {
     dispatch(addItemsToCart(product._id, 1))
@@ -40,10 +43,10 @@ const Product = ({ product }) => {
     dispatch(addToWishList(product._id))
     alert.success('Item added to Wishlist')
   }
-  // const RemoveWishListHandler = () => {
-  //   dispatch(removeFromWishList(product._id))
-  //   alert.success('Item Removed from  Wishlist')
-  // }
+  const RemoveWishListHandler = () => {
+    dispatch(removeFromWishList(product._id))
+    alert.success('Item Removed from  Wishlist')
+  }
   return (
     <Fragment>
       <Box>
@@ -70,16 +73,14 @@ const Product = ({ product }) => {
               <Typography variant='subtitle2' sx={{ flexGrow: 0.5 }}>
                 {product.price} SEK
               </Typography>
-
-              {/* {itemExists === true ? (
+              {wishList.map((item) => item.product).includes(product._id) ? (
                 <FavoriteIcon onClick={RemoveWishListHandler} />
               ) : (
                 <FavoriteBorderIcon
-                  onClick={(id) => dispatch(addToWishList(product._id))}
+                  onClick={addToWishListHandler}
                   className='icon'
                 />
-              )} */}
-              <FavoriteBorderIcon onClick={addToWishListHandler} />
+              )}
             </Box>
           </CardContent>
           <CardActions>
