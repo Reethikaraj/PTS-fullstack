@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import ReactStars from 'react-rating-stars-component'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import {
@@ -12,6 +11,7 @@ import {
   CardMedia,
   Button,
 } from '@mui/material'
+import { Rating } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { addItemsToCart } from '../../redux/actions/cartAction'
@@ -24,11 +24,10 @@ const Product = ({ product }) => {
   // Rating stars settings
   const options = {
     edit: false,
-    color: 'rgba(20,20,20,0.1)',
-    activeColor: 'tomato',
-    value: product.rating,
-    isHalf: true,
-    size: 18,
+    value: product?.rating,
+    readOnly: true,
+    precision: 0.5,
+    size: 'small',
   }
   const dispatch = useDispatch()
   const alert = useAlert()
@@ -64,7 +63,7 @@ const Product = ({ product }) => {
               {product.name}
             </Typography>
             <Box sx={{ display: 'flex' }}>
-              <ReactStars {...options} />
+              <Rating {...options} />
               <Typography variant='caption' sx={{ paddingTop: '5px' }}>
                 ({product.numOfReviews})
               </Typography>
@@ -74,11 +73,14 @@ const Product = ({ product }) => {
                 {product.price} SEK
               </Typography>
               {wishList.map((item) => item.product).includes(product._id) ? (
-                <FavoriteIcon onClick={RemoveWishListHandler} />
+                <FavoriteIcon
+                  className='heartIcon'
+                  onClick={RemoveWishListHandler}
+                />
               ) : (
                 <FavoriteBorderIcon
+                  className='heartIcon'
                   onClick={addToWishListHandler}
-                  className='icon'
                 />
               )}
             </Box>

@@ -75,6 +75,7 @@ const Products = () => {
             marginLeft: '0.5%',
             position: 'relative',
             top: '11vh',
+            paddingBottom: '50px',
           }}
         >
           {products &&

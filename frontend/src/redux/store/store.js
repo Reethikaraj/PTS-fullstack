@@ -13,6 +13,11 @@ import {
   orderDetailsReducer,
 } from '../reducers/orderReducer'
 import { wishListReducer } from '../reducers/wishListReducer'
+import {
+  newReviewReducer,
+  productReviewsReducer,
+  reviewReducer,
+} from '../reducers/reviewReducer'
 
 // Combining all the reducers
 export const rootReducer = combineReducers({
@@ -26,6 +31,9 @@ export const rootReducer = combineReducers({
   newOrderReducer: newOrderReducer,
   myOrdersReducer: myOrdersReducer,
   orderDetailsReducer: orderDetailsReducer,
+  newReviewReducer: newReviewReducer,
+  productReviewsReducer: productReviewsReducer,
+  reviewReducer: reviewReducer,
 })
 function saveToLocalStorage(state) {
   const localStorageState = JSON.stringify(state)

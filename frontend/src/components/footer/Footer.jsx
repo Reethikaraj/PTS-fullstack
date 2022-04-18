@@ -36,7 +36,7 @@ const Footer = () => {
           />
           <span className='tooltiptext'>Products</span>
         </Box>
-        {orders?.orderItems?.length ? (
+        {orders ? (
           ''
         ) : (
           <Box className='tooltip'>

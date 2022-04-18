@@ -3,6 +3,8 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { switchTheme } from '../../redux/actions/themeAction'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
@@ -10,7 +12,9 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useNavigate } from 'react-router-dom'
+import { logout } from '../../redux/actions/userAction'
 import './Header.css'
+import { Button } from '@mui/material'
 
 const Header = () => {
   // Profile icon
@@ -20,6 +24,20 @@ const Header = () => {
   const themes = useSelector((state) => state.themeReducer)
   const navigate = useNavigate()
   const { cartItems } = useSelector((state) => state.cartReducer)
+  // For User options
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  // Logout
+  function logoutUser() {
+    dispatch(logout())
+    alert.success('Logout Successfully')
+  }
   // console.log('user', user)
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -34,11 +52,42 @@ const Header = () => {
           <Box sx={{ flexGrow: 2 }}>
             {isAuthenticated === true ? (
               <Box>
-                <img
-                  src={user?.avatar?.url}
-                  alt=''
-                  onClick={() => navigate('/account')}
-                />
+                <Button
+                  id='basic-button'
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup='true'
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  <img
+                    // src={user?.avatar?.url}
+                    className='profileImg'
+                    src='/assets/profile.png'
+                    alt=''
+                  />
+                </Button>
+                <Menu
+                  id='basic-menu'
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem
+                    onClick={() => (navigate('/account'), handleClose())}
+                  >
+                    Profile
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => (
+                      navigate('/products'), logoutUser(), handleClose()
+                    )}
+                  >
+                    Logout
+                  </MenuItem>
+                </Menu>
                 <span>{user.name}</span>
               </Box>
             ) : (

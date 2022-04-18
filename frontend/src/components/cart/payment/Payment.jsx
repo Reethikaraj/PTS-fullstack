@@ -34,7 +34,8 @@ const Payment = () => {
   // STRIPE
   const payBtn = useRef(null)
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice),
+    // amount: Math.round(orderInfo.totalPrice),
+    amount: orderInfo.totalPrice * 100,
   }
   // Req.body for creating order
   const order = {
@@ -64,7 +65,7 @@ const Payment = () => {
         config
       )
       const client_secret = data.client_secret
-      console.log('data', data)
+      // console.log('data', data)
       if (!stripe || !elements) return
       const result = await stripe.confirmCardPayment(client_secret, {
         payment_method: {
@@ -102,6 +103,7 @@ const Payment = () => {
     } catch (error) {
       payBtn.current.disabled = false
       alert.error(error.response.data.message)
+      console.log('error', error)
     }
   }
   // Error in order reducer

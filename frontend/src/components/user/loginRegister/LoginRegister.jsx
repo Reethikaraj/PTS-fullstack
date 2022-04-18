@@ -76,7 +76,7 @@ const LoginRegister = () => {
       dispatch(clearErrors())
     }
     if (isAuthenticated) {
-      navigate('/account')
+      navigate('/products')
     }
   }, [dispatch, alert, error, isAuthenticated, navigate])
 
