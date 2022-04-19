@@ -4,6 +4,11 @@ import Stripe from 'stripe'
 const stripe = Stripe(
   'sk_test_51Kj5gUDhjEXclGcM0ZgEDErJewtuVnk3jtWZyTw4SvSI0jgd6Pb1mJa9MhEa3EIRdoCtwIQJddEG60cRTNbdpIfn00g67j9vzl'
 )
+console.log('cloudName', process.env.CLOUDINARY_NAME)
+console.log('port', process.env.PORT)
+console.log('key', process.env.STRIPE_SECRET_KEY)
+// const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
+
 export const processPayment = catchAsyncErrors(async (req, res, next) => {
   const myPayment = await stripe.paymentIntents.create({
     payment_method_types: ['card'],

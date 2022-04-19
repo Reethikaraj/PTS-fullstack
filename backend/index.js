@@ -9,7 +9,12 @@ import userRouter from './src/routers/userRouter.js'
 import orderRouter from './src/routers/orderRouter.js'
 import paymentRouter from './src/routers/paymentRouter.js'
 import cors from 'cors'
+import path from 'path'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
+dotenv.config()
 const app = express()
 
 app.use(express.json())
@@ -19,7 +24,12 @@ app.use(cors())
 // if (process.env.NODE_ENV !== 'PRODUCTION') {
 //   dotenv.config({ path: '.env' })
 // }
-dotenv.config()
+
+// For joining frontend and backend
+// app.use(express.static(path.join(__dirname, '../frontend/build')))
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
+// })
 app.use(cookieParser())
 // For cloudinary
 app.use(bodyParser.urlencoded({ extended: true }))

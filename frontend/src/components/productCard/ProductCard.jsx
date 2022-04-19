@@ -72,7 +72,7 @@ const Product = ({ product }) => {
               <Typography variant='subtitle2' sx={{ flexGrow: 0.5 }}>
                 {product.price} SEK
               </Typography>
-              {wishList.map((item) => item.product).includes(product._id) ? (
+              {wishList?.map((item) => item.product).includes(product._id) ? (
                 <FavoriteIcon
                   className='heartIcon'
                   onClick={RemoveWishListHandler}
