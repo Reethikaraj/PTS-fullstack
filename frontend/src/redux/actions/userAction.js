@@ -14,7 +14,6 @@ export const login = (email, password) => async (dispatch) => {
         config
       )
       .then((res) => {
-        console.log('response', res)
         dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.user })
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('user', JSON.stringify(res.data.user))
@@ -36,8 +35,11 @@ export const register = (userData) => async (dispatch) => {
     const { data } = await axios
       .post('http://localhost:5000/api/v1/user/register', userData, config)
       .then((res) => {
+<<<<<<< HEAD
         console.log('response', res)
         console.log('data', data)
+=======
+>>>>>>> temp
         localStorage.setItem('token', res.data.token)
       })
     dispatch({ type: 'REGISTER_USER_SUCCESS', payload: data.user })
@@ -48,18 +50,6 @@ export const register = (userData) => async (dispatch) => {
     })
   }
 }
-
-// // Load User
-// export const loadUser = () => async (dispatch) => {
-//   console.log('dispatching from loadUser, user.Action')
-//   try {
-//     dispatch({ type: 'LOAD_USER_REQUEST' })
-//     const { data } = await axios.get('http://localhost:5000/api/v1/user/me')
-//     dispatch({ type: 'LOAD_USER_SUCCESS', payload: data.user })
-//   } catch (error) {
-//     dispatch({ type: 'LOAD_USER_FAIL', payload: error.response.data.message })
-//   }
-// }
 
 // Logout User
 export const logout = () => async (dispatch) => {

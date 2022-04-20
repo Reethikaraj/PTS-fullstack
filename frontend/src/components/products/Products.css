@@ -33,3 +33,8 @@
 .category-link:hover {
   color: var(--background-primary);
 }
+@media only screen and (max-width: 440px) {
+  .css-y90f85-MuiGrid-root {
+    justify-content: flex-start;
+  }
+}

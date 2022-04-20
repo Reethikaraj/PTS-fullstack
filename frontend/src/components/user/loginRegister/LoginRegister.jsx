@@ -1,13 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
-import Loader from '../../loading/Loader'
 import { Container, Box, Grid, Button, TextField, Link } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  login,
-  clearErrors,
-  register,
-  loadUser,
-} from '../../../redux/actions/userAction'
+import { login, clearErrors, register } from '../../../redux/actions/userAction'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
 import './LoginRegister.css'
@@ -18,9 +12,7 @@ const LoginRegister = () => {
   const navigate = useNavigate()
   // To display errors
   const alert = useAlert()
-  const { error, loading, isAuthenticated } = useSelector(
-    (state) => state.userReducer
-  )
+  const { error, isAuthenticated } = useSelector((state) => state.userReducer)
   // useRef for switching tabs
   const loginTab = useRef(null)
   const registerTab = useRef(null)
@@ -67,9 +59,6 @@ const LoginRegister = () => {
       setUser({ ...user, [e.target.name]: e.target.value })
     }
   }
-  // For redirecting
-  // const redirect = Location.search ? Location.search.split('=')[1] : '/account'
-  // Display errors
   useEffect(() => {
     if (error) {
       alert.error(error)
@@ -97,97 +86,155 @@ const LoginRegister = () => {
   }
   return (
     <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Fragment>
-          <Container
-            maxWidth='xs'
-            className='signin'
-            sx={{ position: 'relative', top: '12vh' }}
-          >
-            <Box className='.loginSignUpBox '>
-              <Box className='login_signUp_toggle'>
-                <Box>
-                  <p onClick={(e) => switchTabs(e, 'login')}>LOGIN</p>
-                </Box>
-                <Box className='tab_left'>
-                  <p onClick={(e) => switchTabs(e, 'register')}>REGISTER</p>
-                </Box>
-              </Box>
-              <Button
-                className='switch'
-                variant='contained'
-                ref={switcherTab}
-              ></Button>
+      <Container
+        maxWidth='xs'
+        className='signin'
+        sx={{ position: 'relative', top: '12vh' }}
+      >
+        <Box className='.loginSignUpBox '>
+          <Box className='login_signUp_toggle'>
+            <Box>
+              <p onClick={(e) => switchTabs(e, 'login')}>LOGIN</p>
             </Box>
+            <Box className='tab_left'>
+              <p onClick={(e) => switchTabs(e, 'register')}>REGISTER</p>
+            </Box>
+          </Box>
+          <Button
+            className='switch'
+            variant='contained'
+            ref={switcherTab}
+          ></Button>
+        </Box>
 
-            <Box
-              className='loginForm'
-              ref={loginTab}
-              sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+        <Box
+          className='loginForm'
+          ref={loginTab}
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Box component='form'>
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              label='Email Address'
+              type='email'
+              value={loginEmail}
+              onChange={(e) => {
+                e.preventDefault()
+                setLoginEmail(e.target.value)
               }}
+            />
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              type='password'
+              label='Password'
+              value={loginPassword}
+              onChange={(e) => {
+                e.preventDefault()
+                setLoginPassword(e.target.value)
+              }}
+            />
+            <Button
+              className='button'
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 2 }}
+              onClick={loginSubmit}
             >
-              <Box component='form'>
+              Login
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href='#' variant='body2'>
+                  Forgot password?
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Box
+          className='signUpForm'
+          ref={registerTab}
+          // Since we are uploading image also
+          encType='multipart/form-data'
+          sx={{
+            marginTop: 13,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Box component='form'>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
                 <TextField
-                  margin='normal'
                   required
                   fullWidth
+                  id='firstName'
+                  name='name'
+                  label='Name'
+                  value={name}
+                  onChange={registerDataChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id='email'
                   label='Email Address'
-                  type='email'
-                  value={loginEmail}
-                  onChange={(e) => {
-                    e.preventDefault()
-                    setLoginEmail(e.target.value)
-                  }}
+                  name='email'
+                  autoComplete='email'
+                  value={email}
+                  onChange={registerDataChange}
                 />
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
-                  margin='normal'
                   required
                   fullWidth
-                  type='password'
+                  name='password'
                   label='Password'
-                  value={loginPassword}
-                  onChange={(e) => {
-                    e.preventDefault()
-                    setLoginPassword(e.target.value)
-                  }}
+                  type='password'
+                  id='password'
+                  autoComplete='new-password'
+                  value={password}
+                  onChange={registerDataChange}
                 />
-                <Button
-                  className='button'
-                  type='submit'
-                  fullWidth
-                  variant='contained'
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={loginSubmit}
-                >
-                  Login
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href='#' variant='body2'>
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-            <Box
-              className='signUpForm'
-              ref={registerTab}
-              // Since we are uploading image also
-              encType='multipart/form-data'
-              sx={{
-                marginTop: 13,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
+              </Grid>
+              <Grid item xs={12}>
+                <div className='registerImage'>
+                  <img src={avatarPreview} alt='User' />
+                  <TextField
+                    className='imageTextfield '
+                    required
+                    fullWidth
+                    name='avatar'
+                    accept='image/*'
+                    type='file'
+                    onChange={registerDataChange}
+                  />
+                </div>
+              </Grid>
+            </Grid>
+            <Button
+              className='button'
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 2 }}
+              onClick={registerSubmit}
             >
+<<<<<<< HEAD
               <Box component='form'>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -256,6 +303,13 @@ const LoginRegister = () => {
           </Container>
         </Fragment>
       )}
+=======
+              Register
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+>>>>>>> temp
     </Fragment>
   )
 }
