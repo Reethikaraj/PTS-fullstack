@@ -35,14 +35,9 @@ export const register = (userData) => async (dispatch) => {
     const { data } = await axios
       .post('http://localhost:5000/api/v1/user/register', userData, config)
       .then((res) => {
-<<<<<<< HEAD
-        console.log('response', res)
-        console.log('data', data)
-=======
->>>>>>> temp
+        dispatch({ type: 'REGISTER_USER_SUCCESS', payload: res.data.user })
         localStorage.setItem('token', res.data.token)
       })
-    dispatch({ type: 'REGISTER_USER_SUCCESS', payload: data.user })
   } catch (error) {
     dispatch({
       type: 'REGISTER_USER_FAIL',

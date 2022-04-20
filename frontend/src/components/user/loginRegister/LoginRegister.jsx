@@ -234,82 +234,11 @@ const LoginRegister = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={registerSubmit}
             >
-<<<<<<< HEAD
-              <Box component='form'>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id='firstName'
-                      name='name'
-                      label='Name'
-                      value={name}
-                      onChange={registerDataChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id='email'
-                      label='Email Address'
-                      name='email'
-                      autoComplete='email'
-                      value={email}
-                      onChange={registerDataChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name='password'
-                      label='Password'
-                      type='password'
-                      id='password'
-                      autoComplete='new-password'
-                      value={password}
-                      onChange={registerDataChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <div className='registerImage'>
-                      <img src={avatarPreview} alt='User' />
-                      <TextField
-                        className='imageTextfield '
-                        required
-                        fullWidth
-                        name='avatar'
-                        accept='image/*'
-                        type='file'
-                        onChange={registerDataChange}
-                      />
-                    </div>
-                  </Grid>
-                </Grid>
-                <Button
-                  className='button'
-                  type='submit'
-                  fullWidth
-                  variant='contained'
-                  sx={{ mt: 3, mb: 2 }}
-                  // onClick={registerSubmit}
-                >
-                  Register
-                </Button>
-              </Box>
-            </Box>
-          </Container>
-        </Fragment>
-      )}
-=======
               Register
             </Button>
           </Box>
         </Box>
       </Container>
->>>>>>> temp
     </Fragment>
   )
 }

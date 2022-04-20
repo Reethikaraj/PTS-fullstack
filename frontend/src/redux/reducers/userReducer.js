@@ -35,14 +35,6 @@ export const userReducer = (state = initialState, action) => {
         user: null,
         error: action.payload,
       }
-    case 'LOAD_USER_FAIL':
-      return {
-        ...state,
-        loading: false,
-        isAuthenticated: false,
-        user: null,
-        error: action.payload,
-      }
     case 'LOGOUT_FAIL':
       return {
         ...state,
