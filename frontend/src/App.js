@@ -9,7 +9,6 @@ import ProductDetails from './components/productDetails/ProductDetails'
 import Products from './components/products/Products'
 import LoginRegister from './components/user/loginRegister/LoginRegister'
 import Profile from './components/user/profile/Profile'
-import ProtectedRoute from './components/route/ProtectedRoute'
 import UpdateProfile from './components/user/updateProfile/UpdateProfile'
 import Cart from './components/cart/cart/Cart'
 import Shipping from './components/cart/shipping/Shipping'
@@ -18,7 +17,6 @@ import Payment from './components/cart/payment/Payment'
 import axios from 'axios'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-import storeFactory from './redux/store/store'
 import WishList from './components/wishList/WishList'
 
 import './App.css'
@@ -33,11 +31,12 @@ function App() {
       'http://localhost:5000/api/v1/stripeapikey'
     )
     setStripeApiKey(data.stripeApiKey)
+    stripePromise = loadStripe(stripeApiKey)
   }
+  let stripePromise
   useEffect(() => {
     getStripeApiKey()
   })
-  const stripePromise = loadStripe(stripeApiKey)
   return (
     <div className='App' data-theme={themes}>
       <BrowserRouter>
