@@ -31,16 +31,15 @@ export const register = (userData) => async (dispatch) => {
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
-        withCredentials: true,
       },
     }
     const { data } = await axios
       .post('http://localhost:5000/api/v1/user/register', userData, config)
       .then((res) => {
         console.log('response', res)
+        console.log('data', data)
         localStorage.setItem('token', res.data.token)
       })
-
     dispatch({ type: 'REGISTER_USER_SUCCESS', payload: data.user })
   } catch (error) {
     dispatch({

@@ -247,7 +247,7 @@ const LoginRegister = () => {
                   fullWidth
                   variant='contained'
                   sx={{ mt: 3, mb: 2 }}
-                  onClick={registerSubmit}
+                  // onClick={registerSubmit}
                 >
                   Register
                 </Button>

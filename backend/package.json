@@ -9,7 +9,8 @@
     "dev": "nodemon server.js",
     "debug": "ndb server.js",
     "lint": "eslint ./",
-    "prepare": "husky install"
+    "heroku-prebuild": "npm config set ignore-scripts true",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install"
   },
   "author": "",
   "license": "ISC",
