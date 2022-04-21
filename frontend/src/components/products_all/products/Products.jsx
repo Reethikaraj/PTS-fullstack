@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useAlert } from 'react-alert'
-import { clearErrors, getProduct } from '../../redux/actions/productAction'
-import Loader from '../loading/Loader'
+import { clearErrors, getProduct } from '../../../redux/actions/productAction'
+import Loader from '../../layout/loading/Loader'
 import ProductCard from '../productCard/ProductCard'
 import {
   Container,
@@ -14,7 +14,7 @@ import {
   Box,
   Rating,
 } from '@mui/material'
-import Search from '../search/Search'
+import Search from '../../search/Search'
 import { useParams } from 'react-router-dom'
 import './Products.css'
 
@@ -68,10 +68,10 @@ const Products = () => {
       ) : (
         <Grid
           container
-          justifyContent='center'
+          justifyContent='flex-start'
           alignItems='center'
           sx={{
-            height: '140vh',
+            height: '120%',
             marginLeft: '0.5%',
             position: 'relative',
             top: '11vh',

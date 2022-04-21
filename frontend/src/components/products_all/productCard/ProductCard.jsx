@@ -14,11 +14,11 @@ import {
 import { Rating } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
-import { addItemsToCart } from '../../redux/actions/cartAction'
+import { addItemsToCart } from '../../../redux/actions/cartAction'
 import {
   addToWishList,
   removeFromWishList,
-} from '../../redux/actions/wishListAction'
+} from '../../../redux/actions/wishListAction'
 import './ProductCard.css'
 const Product = ({ product }) => {
   // Rating stars settings
@@ -49,17 +49,25 @@ const Product = ({ product }) => {
   return (
     <Fragment>
       <Box>
-        <Card className='card' sx={{ width: 150, height: 350, margin: '5px' }}>
+        <Card
+          className='card'
+          sx={{ width: '130px', height: '310px', margin: '5px' }}
+        >
           <Link to={`/product/${product._id}`}>
             <CardMedia
               component='img'
-              height='180'
+              height='140px'
               image={product.images[0].url}
               alt='Product'
             />
           </Link>
           <CardContent>
-            <Typography gutterBottom variant='subtitle2' component='div'>
+            <Typography
+              gutterBottom
+              variant='subtitle2'
+              component='div'
+              sx={{ height: '66px' }}
+            >
               {product.name}
             </Typography>
             <Box sx={{ display: 'flex' }}>

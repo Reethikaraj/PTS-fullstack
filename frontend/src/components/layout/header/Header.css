@@ -16,7 +16,7 @@
   color: var(--text-primary);
 }
 .profileImg {
-  width: 50px;
+  width: 40px;
   height: auto;
   border-radius: 50%;
   cursor: pointer;
@@ -72,4 +72,10 @@
   position: relative;
   top: -5px;
   left: -10px;
+}
+.css-1t29gy6-MuiToolbar-root {
+  padding-left: 0 !important;
+}
+.MuiTypography-body2 {
+  margin-left: 12px !important;
 }

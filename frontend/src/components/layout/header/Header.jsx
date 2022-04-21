@@ -6,13 +6,13 @@ import Typography from '@mui/material/Typography'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useSelector, useDispatch } from 'react-redux'
-import { switchTheme } from '../../redux/actions/themeAction'
+import { switchTheme } from '../../../redux/actions/themeAction'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '../../redux/actions/userAction'
+import { logout } from '../../../redux/actions/userAction'
 import './Header.css'
 import { Button } from '@mui/material'
 
@@ -58,6 +58,7 @@ const Header = () => {
                   aria-haspopup='true'
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
+                  sx={{ padding: '0' }}
                 >
                   <img
                     // src={user?.avatar?.url}
@@ -66,6 +67,9 @@ const Header = () => {
                     alt=''
                   />
                 </Button>
+                <Typography variant='body2' sx={{ marginLeft: '12px' }}>
+                  {user.name}
+                </Typography>
                 <Menu
                   id='basic-menu'
                   anchorEl={anchorEl}
@@ -88,17 +92,20 @@ const Header = () => {
                     Logout
                   </MenuItem>
                 </Menu>
-                <span>{user.name}</span>
               </Box>
             ) : (
               <Box className='tooltip'>
-                <img
-                  className='profileImg'
-                  src='/assets/profile.png'
-                  alt='login pic'
-                  onClick={() => navigate('/login')}
-                />
-                <span className='tooltiptext'>Login</span>
+                <Button>
+                  <img
+                    className='profileImg'
+                    src='/assets/profile.png'
+                    alt='login pic'
+                    onClick={() => navigate('/login')}
+                  />
+                </Button>
+                <Typography variant='body2' sx={{ marginLeft: '14px' }}>
+                  Login
+                </Typography>
               </Box>
             )}
           </Box>

@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom'
 import {
   getProductDetails,
   clearErrors,
-} from '../../redux/actions/productDetailsAction'
+} from '../../../redux/actions/productDetailsAction'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import ReviewCard from '../reviewCard/ReviewCard'
-import Loader from '../loading/Loader'
+import Loader from '../../layout/loading/Loader'
 import { useAlert } from 'react-alert'
 import {
   Container,
@@ -25,8 +25,8 @@ import {
 } from '@mui/material'
 import { Rating } from '@material-ui/lab'
 import Carousel from 'react-material-ui-carousel'
-import { addItemsToCart } from '../../redux/actions/cartAction'
-import { newReview } from '../../redux/actions/reviewAction'
+import { addItemsToCart } from '../../../redux/actions/cartAction'
+import { newReview } from '../../../redux/actions/reviewAction'
 import './ProductDetails.css'
 
 const ProductDetails = () => {

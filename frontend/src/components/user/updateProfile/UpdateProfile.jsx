@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
-import Loader from '../../loading/Loader'
+import Loader from '../../layout/loading/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   clearErrors,

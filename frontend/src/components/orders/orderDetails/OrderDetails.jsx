@@ -19,7 +19,6 @@ const OrderDetails = () => {
   useEffect(() => {
     dispatch(getOrderDetails(params.id))
   }, [dispatch, params])
-  console.log('order', order)
   return (
     <Container
       sx={{

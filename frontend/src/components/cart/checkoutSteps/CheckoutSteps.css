@@ -14,5 +14,8 @@
 }
 
 .MuiTypography-body1 {
-  font-size: 10px;
+  font-size: 10px !important;
+}
+.MuiStepper-root {
+  padding: 0% !important;
 }

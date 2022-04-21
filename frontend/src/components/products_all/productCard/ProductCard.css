@@ -13,12 +13,12 @@
 .css-mzh7rh-MuiTypography-root {
   padding-top: 0 !important;
 }
-@media only screen and (max-width: 400px) {
+/* @media only screen and (max-width: 400px) {
   .card {
     max-width: 130px !important;
     height: 380px !important;
   }
-}
+} */
 .heartIcon {
   color: var(--background-primary) !important;
   cursor: pointer;

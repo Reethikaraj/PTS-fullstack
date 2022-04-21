@@ -117,7 +117,7 @@ const Payment = () => {
   return (
     <Fragment>
       <MetaData title='PTS-Payment' />
-      <Container sx={{ position: 'relative', top: '12vh' }}>
+      <Container sx={{ position: 'relative', top: '12vh', height: '120%' }}>
         <CheckoutSteps activeStep={2} />
         <div className='paymentContainer'>
           <form className='paymentForm' onSubmit={(e) => submitHandler(e)}>

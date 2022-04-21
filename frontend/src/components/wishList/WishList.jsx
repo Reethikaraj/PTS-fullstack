@@ -15,18 +15,24 @@ import './WishList.css'
 const WishList = () => {
   const dispatch = useDispatch()
   const { wishList } = useSelector((state) => state.wishListReducer)
-  const { user } = useSelector((state) => state.userReducer)
-  console.log('wishlist', wishList)
+  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   return (
     <Grid
       container
       sx={{
         position: 'relative',
         top: '13vh',
+        justifyContent: 'center',
+        marginTop: '30px',
       }}
     >
       <Grid lg={12} md={12} sm={12} xs={12}>
-        <h1>{user?.name}'s WishList</h1>
+        <Typography
+          variant='h5'
+          sx={{ textAlign: 'center', marginBottom: '20px' }}
+        >
+          {isAuthenticated === true ? `${user?.name}'s WishList` : 'Wishlist'}
+        </Typography>
       </Grid>
       {wishList?.map((item) => (
         <Grid container lg={3} md={4} sm={6} xs={12}>

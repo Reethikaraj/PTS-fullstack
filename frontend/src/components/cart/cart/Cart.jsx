@@ -21,7 +21,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Cart = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { isAuthenticated } = useSelector((state) => state.userReducer)
+  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   const { cartItems } = useSelector((state) => state.cartReducer)
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1
@@ -59,6 +59,9 @@ const Cart = () => {
               top: '11vh',
             }}
           >
+            <Typography variant='h6'>
+              {isAuthenticated === true ? `${user.name}'s cart` : 'Cart'}
+            </Typography>
             <Grid
               container
               lg={12}
@@ -67,24 +70,18 @@ const Cart = () => {
               xs={12}
               sx={{ padding: '10px', justifyContent: 'center' }}
             >
-              <Box sx={{ display: 'flex' }}>
-                <Typography variant='h6'>Gross Total: </Typography>
-                <Typography variant='h6'>{`${cartItems.reduce(
-                  (acc, item) => acc + item.quantity * item.price,
-                  0
-                )}SEK`}</Typography>
-              </Box>
-              <Grid
-                lg={12}
-                md={12}
-                sm={12}
-                xs={12}
-                sx={{ justifyContent: 'center' }}
-              >
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                  <Typography variant='body1'>Gross Total: </Typography>
+                  <Typography variant='body1'>{`${cartItems.reduce(
+                    (acc, item) => acc + item.quantity * item.price,
+                    0
+                  )}SEK`}</Typography>
+                </Box>
                 <Button className='button' onClick={checkoutHandler}>
                   Check Out
                 </Button>
-              </Grid>
+              </Box>
             </Grid>
             {cartItems &&
               cartItems.map((item) => (
