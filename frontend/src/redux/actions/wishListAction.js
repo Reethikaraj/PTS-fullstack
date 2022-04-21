@@ -6,7 +6,9 @@ import axios from 'axios'
 //   }
 // }
 export const addToWishList = (id) => async (dispatch, getState) => {
-  const { data } = await axios.get(`http://localhost:5000/api/v1/product/${id}`)
+  const { data } = await axios.get(
+    `https://pradha-backend.herokuapp.com/api/v1/product/${id}`
+  )
   console.log('dispatching from wish action')
   dispatch({
     type: 'ADD_TO_WISHLIST',

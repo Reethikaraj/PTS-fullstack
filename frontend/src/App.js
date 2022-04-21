@@ -28,15 +28,14 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState('')
   async function getStripeApiKey() {
     const { data } = await axios.get(
-      'http://localhost:5000/api/v1/stripeapikey'
+      'https://pradha-backend.herokuapp.com/api/v1/stripeapikey'
     )
     setStripeApiKey(data.stripeApiKey)
-    stripePromise = loadStripe(stripeApiKey)
   }
-  let stripePromise
   useEffect(() => {
     getStripeApiKey()
   })
+  const stripePromise = loadStripe(stripeApiKey)
   return (
     <div className='App' data-theme={themes}>
       <BrowserRouter>

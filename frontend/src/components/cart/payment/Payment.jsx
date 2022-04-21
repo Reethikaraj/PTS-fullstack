@@ -60,7 +60,7 @@ const Payment = () => {
         },
       }
       const { data } = await axios.post(
-        'http://localhost:5000/api/v1/payment/process',
+        'https://pradha-backend.herokuapp.com/api/v1/payment/process',
         paymentData,
         config
       )

@@ -10,11 +10,11 @@ process.on('uncaughtException', (err) => {
   process.exit(1)
 })
 
-// env config
-if (process.env.NODE_ENV !== 'PRODUCTION') {
-  dotenv.config({ path: '.env' })
-}
-// dotenv.config()
+// // env config
+// if (process.env.NODE_ENV !== 'PRODUCTION') {
+//   dotenv.config({ path: '.env' })
+// }
+dotenv.config()
 
 // Connecting mongoDB
 const uri = process.env.MONGODB_URI

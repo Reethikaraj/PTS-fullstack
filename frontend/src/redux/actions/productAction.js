@@ -6,7 +6,7 @@ export const getProduct = (category) => async (dispatch) => {
     dispatch({
       type: 'ALL_PRODUCT_REQUESTS',
     })
-    let link = `http://localhost:5000/api/v1/products`
+    let link = `https://pradha-backend.herokuapp.com/api/v1/products`
     if (category) {
       link = `http://localhost:5000/api/v1/products?&category=${category}`
     }

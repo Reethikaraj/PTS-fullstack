@@ -11,7 +11,7 @@ export const newReview = (reviewData) => async (dispatch) => {
       },
     }
     const { data } = await axios.put(
-      `http://localhost:5000/api/v1/product/review`,
+      `https://pradha-backend.herokuapp.com/api/v1/product/review`,
       reviewData,
       config
     )
@@ -38,7 +38,7 @@ export const getAllReviews = (id) => async (dispatch) => {
       },
     }
     const { data } = await axios.get(
-      ` http://localhost:500/api/v1/reviews?id=${id}`,
+      ` https://pradha-backend.herokuapp.com/api/v1/reviews?id=${id}`,
       config
     )
     dispatch({
@@ -64,7 +64,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
       },
     }
     const { data } = await axios.delete(
-      `/api/v1/reviews?id=${reviewId}&productId=${productId}`,
+      `https://pradha-backend.herokuapp.com/api/v1/reviews?id=${reviewId}&productId=${productId}`,
       config
     )
     dispatch({

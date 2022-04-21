@@ -14,16 +14,16 @@ import cors from 'cors'
 // import { fileURLToPath } from 'url'
 
 // const __dirname = dirname(fileURLToPath(import.meta.url))
-// dotenv.config()
+dotenv.config()
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 
-// .env config
-if (process.env.NODE_ENV !== 'PRODUCTION') {
-  dotenv.config({ path: '.env' })
-}
+// // .env config
+// if (process.env.NODE_ENV !== 'PRODUCTION') {
+//   dotenv.config({ path: '.env' })
+// }
 
 // For joining frontend and backend
 // app.use(express.static(path.join(__dirname, '../frontend/build')))

@@ -9,7 +9,7 @@ export const login = (email, password) => async (dispatch) => {
     }
     const { data } = await axios
       .post(
-        'http://localhost:5000/api/v1/user/login',
+        'https://pradha-backend.herokuapp.com/api/v1/user/login',
         { email, password },
         config
       )
@@ -33,7 +33,11 @@ export const register = (userData) => async (dispatch) => {
       },
     }
     const { data } = await axios
-      .post('http://localhost:5000/api/v1/user/register', userData, config)
+      .post(
+        'https://pradha-backend.herokuapp.com/api/v1/user/register',
+        userData,
+        config
+      )
       .then((res) => {
         dispatch({ type: 'REGISTER_USER_SUCCESS', payload: res.data.user })
         localStorage.setItem('token', res.data.token)
@@ -49,7 +53,7 @@ export const register = (userData) => async (dispatch) => {
 // Logout User
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get('http://localhost:5000/api/v1/user/logout')
+    await axios.get('https://pradha-backend.herokuapp.com/api/v1/user/logout')
     dispatch({ type: 'LOGOUT_SUCCESS' })
   } catch (error) {
     dispatch({ type: 'LOGOUT_FAIL', payload: error.response.data.message })

@@ -13,7 +13,7 @@ export const updateProfile = (userData) => async (dispatch, getState) => {
     }
     // console.log('token', token, 'userData', userData)
     const { data } = await axios.put(
-      'http://localhost:5000/api/v1/user/me/update',
+      'https://pradha-backend.herokuapp.com/api/v1/user/me/update',
       userData,
       config
     )

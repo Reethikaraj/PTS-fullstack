@@ -12,7 +12,7 @@ export const createOrder = (order) => async (dispatch) => {
       },
     }
     const { data } = await axios.post(
-      'http://localhost:5000/api/v1/order/new',
+      'https://pradha-backend.herokuapp.com/api/v1/order/new',
       order,
       config
     )
@@ -36,7 +36,7 @@ export const myOrders = () => async (dispatch) => {
       },
     }
     const { data } = await axios.get(
-      'http://localhost:5000/api/v1/order/me',
+      'https://pradha-backend.herokuapp.com/api/v1/order/me',
       config
     )
     dispatch({ type: 'MY_ORDERS_SUCCESS', payload: data.orders })
@@ -60,7 +60,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
       },
     }
     const { data } = await axios.get(
-      `http://localhost:5000/api/v1/order/${id}`,
+      `https://pradha-backend.herokuapp.com/api/v1/order/${id}`,
       config
     )
     dispatch({ type: 'ORDER_DETAILS_SUCCESS', payload: data.order })
@@ -83,7 +83,7 @@ export const getAllOrders = () => async (dispatch) => {
       },
     }
     const { data } = await axios.get(
-      'http://localhost:5000/api/v1/admin/orders',
+      'https://pradha-backend.herokuapp.com/api/v1/admin/orders',
       config
     )
     dispatch({ type: 'ALL_ORDERS_SUCCESS', payload: data.orders })
@@ -107,7 +107,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
       },
     }
     const { data } = await axios.put(
-      `http://localhost:5000/api/v1/admin/order/updatestatus/${id}`,
+      `https://pradha-backend.herokuapp.com/api/v1/admin/order/updatestatus/${id}`,
       order,
       config
     )
@@ -131,7 +131,7 @@ export const deleteOrder = (id) => async (dispatch) => {
       },
     }
     const { data } = await axios.delete(
-      `http://localhost:5000/api/v1/admin/order/delete/${id}`,
+      `https://pradha-backend.herokuapp.com/api/v1/admin/order/delete/${id}`,
       config
     )
     dispatch({ type: 'DELETE_ORDER_SUCCESS', payload: data.success })
