@@ -1,7 +1,12 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Container, Box, Grid, Button, TextField, Link } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, clearErrors, register } from '../../../redux/actions/userAction'
+import {
+  login,
+  clearErrors,
+  register,
+  forgotPassword,
+} from '../../../redux/actions/userAction'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
 import './LoginRegister.css'
@@ -23,41 +28,39 @@ const LoginRegister = () => {
   // Register
   const [user, setUser] = useState({
     name: '',
+    lastName: '',
     email: '',
     password: '',
   })
-  const { name, email, password } = user
-  const [avatar, setAvatar] = useState('/assets/profile.png')
-  const [avatarPreview, setAvatarPreview] = useState('/assets/profile.png')
+  const { name, lastName, email, password } = user
   // Login
   const loginSubmit = (e) => {
     e.preventDefault()
     dispatch(login(loginEmail, loginPassword))
   }
+  // // Forgot password
+  // const forgotSubmit = (e) => {
+  //   if (error) {
+  //     alert.error(error)
+  //     dispatch(clearErrors())
+  //   }
+  //   e.preventDefault()
+  //   dispatch(forgotPassword(loginEmail))
+  //   alert.success('Please check your email')
+  // }
   // Register
   const registerSubmit = (e) => {
     e.preventDefault()
     const myForm = new FormData()
     myForm.set('name', name)
+    myForm.set('lastName', lastName)
     myForm.set('email', email)
     myForm.set('password', password)
-    myForm.set('avatar', avatar)
     dispatch(register(myForm))
   }
   // Taking input
   const registerDataChange = (e) => {
-    if (e.target.name === 'avatar') {
-      const reader = new FileReader()
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setAvatarPreview(reader.result)
-          setAvatar(reader.result)
-        }
-      }
-      reader.readAsDataURL(e.target.files[0])
-    } else {
-      setUser({ ...user, [e.target.name]: e.target.value })
-    }
+    setUser({ ...user, [e.target.name]: e.target.value })
   }
   useEffect(() => {
     if (error) {
@@ -130,6 +133,7 @@ const LoginRegister = () => {
                 setLoginEmail(e.target.value)
               }}
             />
+
             <TextField
               margin='normal'
               required
@@ -142,6 +146,7 @@ const LoginRegister = () => {
                 setLoginPassword(e.target.value)
               }}
             />
+
             <Button
               className='button'
               type='submit'
@@ -152,25 +157,17 @@ const LoginRegister = () => {
             >
               Login
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href='#' variant='body2'>
-                  Forgot password?
-                </Link>
-              </Grid>
-            </Grid>
+            <Link href='#'>Forgot password?</Link>
           </Box>
         </Box>
         <Box
           className='signUpForm'
           ref={registerTab}
-          // Since we are uploading image also
-          encType='multipart/form-data'
           sx={{
-            marginTop: 13,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            marginTop: 13,
           }}
         >
           <Box component='form'>
@@ -181,8 +178,19 @@ const LoginRegister = () => {
                   fullWidth
                   id='firstName'
                   name='name'
-                  label='Name'
+                  label='First Name'
                   value={name}
+                  onChange={registerDataChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id='lastName'
+                  name='lastName'
+                  label='Last Name'
+                  value={lastName}
                   onChange={registerDataChange}
                 />
               </Grid>
@@ -210,20 +218,6 @@ const LoginRegister = () => {
                   value={password}
                   onChange={registerDataChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <div className='registerImage'>
-                  <img src={avatarPreview} alt='User' />
-                  <TextField
-                    className='imageTextfield '
-                    required
-                    fullWidth
-                    name='avatar'
-                    accept='image/*'
-                    type='file'
-                    onChange={registerDataChange}
-                  />
-                </div>
               </Grid>
             </Grid>
             <Button

@@ -31,7 +31,9 @@ const ConfirmOrder = () => {
   return (
     <Fragment>
       <MetaData title='PTS- Confirm Order' />
-      <Container sx={{ position: 'relative', top: '12vh', height: '120%' }}>
+      <Container
+        sx={{ position: 'relative', top: '11vh', paddingBottom: '10vh' }}
+      >
         <CheckoutSteps activeStep={1} />
         <div className='confirmOrderPage'>
           <div>
@@ -61,10 +63,8 @@ const ConfirmOrder = () => {
                       <img src={item.image} alt='Product' />
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                       <span>
-                        {item.quantity} X {item.price} SEK ={' '}
-                        <b>
-                          {item.price} SEK*{item.quantity}
-                        </b>
+                        {item.price}SEK X {item.quantity} =
+                        <b>{item.price * item.quantity} SEK</b>
                       </span>
                     </div>
                   ))}
@@ -97,6 +97,14 @@ const ConfirmOrder = () => {
                 <span>{totalPrice} SEK</span>
               </div>
               <button onClick={proceedToPayment}>Proceed To Payment</button>
+              <button
+                variant='contained'
+                className='button'
+                size='small'
+                onClick={() => navigate('/shipping')}
+              >
+                Back to Shipping details
+              </button>
             </div>
           </div>
         </div>

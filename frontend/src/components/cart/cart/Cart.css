@@ -28,38 +28,6 @@
   font: 400 1vmax;
   text-decoration: none;
 }
-/* .cartPage {
-  padding: 5vmax;
-}
-.cartHeader {
-  color: var(--text-primary) !important;
-  background-image: linear-gradient(
-    to right,
-    var(--background-secondary),
-    var(--background-primary)
-  );
-  width: 90%;
-  box-sizing: border-box;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-  font: 300 1vmax;
-}
-.cartHeader > p {
-  margin: 10px;
-}
-.cartHeader > p:last-child {
-  text-align: end;
-}
-.cartPage {
-  padding: 5vmax;
-}
-.cartContainer {
-  width: 90%;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-} */
 .cartInput {
   display: flex;
   align-items: center;
@@ -86,48 +54,6 @@
   font: 400 0.8vmax;
   color: black;
 }
-/* .cartSubtotal {
-  display: flex;
-  padding: 0.5vmax;
-  height: 8vmax;
-  align-items: center;
-  box-sizing: border-box;
-  font: 300 1vmax cursive;
-  justify-content: flex-end;
-  color: rgba(0, 0, 0, 0.753);
-}
-.cartGrossTotal {
-  display: grid;
-  grid-template-columns: 2fr 1.2fr;
-}
-.cartGrossTotalBox {
-  color: var(--text-primary) !important;
-  margin: 1vmax 4vmax;
-  box-sizing: border-box;
-  border-top: 3px solid var(--background-primary);
-  padding: 2vmax 0;
-  font: 300 1vmax;
-  display: flex;
-  justify-content: space-between;
-}
-.checkOutBtn {
-  display: flex;
-  justify-content: flex-end;
-}
-.checkOutBtn > button {
-  color: var(--text-primary) !important;
-  background-image: linear-gradient(
-    to right,
-    var(--background-secondary),
-    var(--background-primary)
-  );
-  border: 1px solid var(--background-primary);
-  width: 40%;
-  font: 300 0.8vmax;
-  margin: 1vmax 4vmax;
-  cursor: pointer;
-  border-radius: 30px;
-} */
 
 @media screen and (max-width: 600px) {
   .cartInput {
@@ -142,13 +68,13 @@
     font: 400 1.8vmax;
   }
 }
-.css-46bh2p-MuiCardContent-root {
-  padding: 0 0 0 16px !important;
-}
-.css-11qr2p8-MuiButtonBase-root-MuiButton-root {
-  margin-top: 5px !important;
-  font-size: x-small !important;
-}
 .css-ug0yqg-MuiGrid-root {
-  justify-content: space-evenly;
+  justify-content: space-evenly !important;
+}
+.css-1xfq7a0 {
+  justify-content: center !important;
+}
+.cartImg {
+  height: 100px !important;
+  width: 83.5px !important;
 }

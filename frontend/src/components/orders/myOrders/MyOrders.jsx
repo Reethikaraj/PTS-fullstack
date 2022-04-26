@@ -23,12 +23,14 @@ const MyOrders = () => {
     <Container
       sx={{
         position: 'relative',
-        top: '12vh',
+        top: '11vh',
         height: '120%',
         paddingBottom: '100px',
       }}
     >
-      <Typography variant='h6'>{user.name}'s orders</Typography>
+      <Typography variant='h6' sx={{ textAlign: 'center' }}>
+        {user.name}'s orders
+      </Typography>
       <Grid container gap={1} sx={{ justifyContent: 'space-evenly' }}>
         {orders?.map((order) => (
           <Link className='link' to={`/order/${order._id}`}>

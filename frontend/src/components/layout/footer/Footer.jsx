@@ -12,6 +12,8 @@ import './Footer.css'
 const Footer = () => {
   const navigate = useNavigate()
   const { orders } = useSelector((state) => state.myOrdersReducer)
+  const { isAuthenticated, user } = useSelector((state) => state.userReducer)
+
   return (
     <footer>
       <Box
@@ -23,6 +25,7 @@ const Footer = () => {
           position: 'fixed',
           bottom: '0vh',
           width: '100%',
+          zIndex: 3,
         }}
       >
         <Box className='tooltip'>
@@ -36,13 +39,13 @@ const Footer = () => {
           />
           <span className='tooltiptext'>Products</span>
         </Box>
-        {orders ? (
-          ''
-        ) : (
+        {isAuthenticated === true && orders?.length >= 1 ? (
           <Box className='tooltip'>
             <WorkIcon className='icon' onClick={() => navigate('/orders')} />
             <span className='tooltiptext'>Orders</span>
           </Box>
+        ) : (
+          ''
         )}
 
         <Box className='tooltip'>
@@ -52,13 +55,17 @@ const Footer = () => {
           />
           <span className='tooltiptext'>Contact</span>
         </Box>
-        <Box className='tooltip'>
-          <DashboardIcon
-            className='icon'
-            onClick={() => navigate('/dashboard')}
-          />
-          <span className='tooltiptext'>Admin</span>
-        </Box>
+        {isAuthenticated === true && user.role === 'admin' ? (
+          <Box className='tooltip'>
+            <DashboardIcon
+              className='icon'
+              onClick={() => navigate('/admin')}
+            />
+            <span className='tooltiptext'>Admin</span>
+          </Box>
+        ) : (
+          ''
+        )}
       </Box>
     </footer>
   )

@@ -8,7 +8,7 @@ export const updateProfile = (userData) => async (dispatch, getState) => {
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
       },
     }
     // console.log('token', token, 'userData', userData)

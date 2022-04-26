@@ -1,9 +1,10 @@
-POST http://localhost:5000/api/v1/user/register
+POST https://pradha-backend.herokuapp.com/api/v1/user/register
 Content-Type: application/json
 
 {
     "name": "Test",
-    "email": "Test1@gmail.com",
+    "lastName":"Testing",
+    "email": "Test23@gmail.com",
     "password": "1111111111"
 }
 ### 

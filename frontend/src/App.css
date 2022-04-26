@@ -6,10 +6,10 @@
   --text-hover: #9c6b92c7;
 }
 [data-theme='dark'] {
-  --background-primary: #6a0572;
-  --background-secondary: #39065a;
-  --text-primary: white;
-  --text-secondary: #5a5551;
+  --background-primary: #772a7d;
+  --background-secondary: #190228;
+  --text-primary: rgb(234, 213, 213);
+  --text-secondary: rgb(241, 221, 221);
   --text-hover: #f0b5e3c7;
 }
 /* hjgjyh */

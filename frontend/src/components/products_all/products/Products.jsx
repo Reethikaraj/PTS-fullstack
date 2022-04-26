@@ -16,6 +16,7 @@ import {
 } from '@mui/material'
 import Search from '../../search/Search'
 import { useParams } from 'react-router-dom'
+import MetaData from '../../MetaData'
 import './Products.css'
 
 // Category
@@ -68,19 +69,26 @@ const Products = () => {
       ) : (
         <Grid
           container
-          justifyContent='flex-start'
-          alignItems='center'
+          justifyContent='center'
+          spacing={1}
           sx={{
             height: '120%',
-            marginLeft: '0.5%',
             position: 'relative',
-            top: '11vh',
-            paddingBottom: '50px',
+            top: '10.5vh',
+            padding: '1vh 1.8vh 8vh 1.5vh',
           }}
         >
+          <MetaData title='PTS - Pradha Trinkets store' />
           {products &&
             products.map((product) => (
-              <Grid container lg={1.5} md={3} sm={4} xs={5.5}>
+              <Grid
+                container
+                lg={2}
+                md={3}
+                sm={4}
+                xs={6}
+                sx={{ maxWidth: '48vw' }}
+              >
                 <ProductCard product={product} />
               </Grid>
             ))}

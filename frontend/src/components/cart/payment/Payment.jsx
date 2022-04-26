@@ -116,8 +116,10 @@ const Payment = () => {
 
   return (
     <Fragment>
-      <MetaData title='PTS-Payment' />
-      <Container sx={{ position: 'relative', top: '12vh', height: '120%' }}>
+      <MetaData title='PTS - Payment' />
+      <Container
+        sx={{ position: 'relative', top: '11vh', paddingBottom: '10vh' }}
+      >
         <CheckoutSteps activeStep={2} />
         <div className='paymentContainer'>
           <form className='paymentForm' onSubmit={(e) => submitHandler(e)}>
@@ -141,6 +143,14 @@ const Payment = () => {
               ref={payBtn}
               className='paymentFormBtn'
             />
+            <div>
+              <button
+                className='paymentFormBtn'
+                onClick={() => navigate('/order/confirm')}
+              >
+                Back
+              </button>
+            </div>
           </form>
         </div>
       </Container>

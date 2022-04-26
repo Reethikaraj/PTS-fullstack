@@ -13,7 +13,7 @@
   color: var(--background-primary);
 }
 
-.MuiTypography-body1 {
+.checkSteps {
   font-size: 10px !important;
 }
 .MuiStepper-root {

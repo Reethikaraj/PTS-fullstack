@@ -13,9 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../../redux/actions/userAction'
-import './Header.css'
 import { Button } from '@mui/material'
-
+import './Header.css'
 const Header = () => {
   // Profile icon
   const { user, isAuthenticated } = useSelector((state) => state.userReducer)
@@ -58,7 +57,7 @@ const Header = () => {
                   aria-haspopup='true'
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  sx={{ padding: '0' }}
+                  sx={{ padding: '0', textAlign: 'center' }}
                 >
                   <img
                     // src={user?.avatar?.url}
@@ -67,7 +66,7 @@ const Header = () => {
                     alt=''
                   />
                 </Button>
-                <Typography variant='body2' sx={{ marginLeft: '12px' }}>
+                <Typography variant='body2' className='UserName'>
                   {user.name}
                 </Typography>
                 <Menu
@@ -94,7 +93,7 @@ const Header = () => {
                 </Menu>
               </Box>
             ) : (
-              <Box className='tooltip'>
+              <Box className='tooltip' sx={{ textAlign: 'center' }}>
                 <Button>
                   <img
                     className='profileImg'
@@ -103,7 +102,7 @@ const Header = () => {
                     onClick={() => navigate('/login')}
                   />
                 </Button>
-                <Typography variant='body2' sx={{ marginLeft: '14px' }}>
+                <Typography variant='body2' className='UserName'>
                   Login
                 </Typography>
               </Box>

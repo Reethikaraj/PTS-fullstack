@@ -5,7 +5,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: 'LOGIN_REQUEST' })
     const config = {
-      headers: { 'Content-Type': 'application/json', withCredentials: true },
+      headers: { 'Content-Type': 'application/json' },
     }
     const { data } = await axios
       .post(
@@ -29,7 +29,7 @@ export const register = (userData) => async (dispatch) => {
     dispatch({ type: 'REGISTER_USER_REQUEST' })
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
       },
     }
     const { data } = await axios
@@ -45,6 +45,35 @@ export const register = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: 'REGISTER_USER_FAIL',
+      payload: error.response.data.message,
+    })
+  }
+}
+// Forgot password
+export const forgotPassword = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: 'FORGOTPASSWORD_USER_REQUEST' })
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    const { data } = await axios
+      .post(
+        'https://pradha-backend.herokuapp.com/api/v1/user/forgot/password',
+        userData,
+        config
+      )
+      .then((res) => {
+        dispatch({
+          type: 'FORGOTPASSWORD_USER_SUCCESS',
+          payload: res.data.user,
+        })
+        // localStorage.setItem('token', res.data.token)
+      })
+  } catch (error) {
+    dispatch({
+      type: 'FORGOTPASSWORD_USER_FAIL',
       payload: error.response.data.message,
     })
   }

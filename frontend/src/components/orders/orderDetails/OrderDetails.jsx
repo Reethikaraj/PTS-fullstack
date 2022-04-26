@@ -7,13 +7,15 @@ import {
   Typography,
   Box,
   Grid,
+  Button,
 } from '@mui/material'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrderDetails } from '../../../redux/actions/orderAction'
 
 const OrderDetails = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const params = useParams()
   const { order } = useSelector((state) => state.orderDetailsReducer)
   useEffect(() => {
@@ -113,6 +115,15 @@ const OrderDetails = () => {
               </Grid>
             ))}
           </Grid>
+          <Box sx={{ margin: '20px 25vw' }}>
+            <Button
+              className='button'
+              size='small'
+              onClick={() => navigate('/orders')}
+            >
+              Back to all orders
+            </Button>
+          </Box>
         </Box>
       </CardContent>
     </Container>

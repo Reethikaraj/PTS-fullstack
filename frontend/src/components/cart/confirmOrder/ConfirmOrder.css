@@ -39,8 +39,9 @@
   padding-top: 2vmax;
 }
 .confirmCartItemsContainer {
-  max-height: 20vmax;
-  overflow-y: auto;
+  /* max-height: 20vmax;
+  overflow-y: auto; */
+  padding-right: 2vmax;
 }
 .confirmCartItemsContainer > div {
   display: flex;
@@ -63,7 +64,7 @@
   color: #5e5e5e;
 }
 .orderSummary {
-  padding: 7vmax;
+  padding: 3vmax;
 }
 .orderSummary > p {
   text-align: center;
@@ -136,9 +137,10 @@
   }
   .confirmCartItemsContainer {
     max-height: 50vw;
+    padding-right: 2vmax;
   }
   .confirmCartItemsContainer > div {
-    font: 400 4vw 'Roboto';
+    font: 400 3vw 'Roboto';
     margin: 4vw 0;
   }
   .confirmCartItemsContainer > div > img {
@@ -149,7 +151,7 @@
     width: 30%;
   }
   .confirmCartItemsContainer > div > span {
-    font: 100 4vw 'Roboto';
+    font: 70 3vw 'Roboto';
   }
   .orderSummary {
     padding: 12vw;

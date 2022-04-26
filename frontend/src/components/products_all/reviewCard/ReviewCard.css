@@ -16,7 +16,6 @@
   flex: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
   border: 1px solid rgba(56, 56, 56, 0.116);
-  width: 30vmax;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,8 +30,8 @@
   font: 600 0.9vmax 'Roboto';
 }
 .reviewCardComment {
-  color: rgba(0, 0, 0, 0.445);
-  font: 300 0.8vmax cursive;
+  color: black;
+  font: 300 0.8vmax;
 }
 .noReviews {
   font: 400 1.3vmax 'Gill Sans';

@@ -49,30 +49,27 @@ const Product = ({ product }) => {
   return (
     <Fragment>
       <Box>
-        <Card
-          className='card'
-          sx={{ width: '130px', height: '310px', margin: '5px' }}
-        >
+        <Card className='card' sx={{ margin: '1vh' }}>
           <Link to={`/product/${product._id}`}>
             <CardMedia
               component='img'
-              height='140px'
+              // height='160px'
               image={product.images[0].url}
               alt='Product'
             />
           </Link>
-          <CardContent>
+          <CardContent sx={{ padding: '0 0 0 5px' }}>
             <Typography
               gutterBottom
               variant='subtitle2'
               component='div'
-              sx={{ height: '66px' }}
+              sx={{ height: '45px' }}
             >
               {product.name}
             </Typography>
             <Box sx={{ display: 'flex' }}>
               <Rating {...options} />
-              <Typography variant='caption' sx={{ paddingTop: '5px' }}>
+              <Typography variant='caption'>
                 ({product.numOfReviews})
               </Typography>
             </Box>

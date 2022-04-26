@@ -33,10 +33,6 @@
   );
   color: var(--text-primary) !important;
 }
-.registerImage > img {
-  width: 3vmax;
-  border-radius: 100%;
-}
 .signUpForm {
   transform: translateY(-100%) translateX(-100vmax);
 }
@@ -53,8 +49,8 @@
 .shiftToRight {
   transform: translateX(100%);
 }
-@media only screen and (max-width: 450px) {
+/* @media only screen and (max-width: 450px) {
   .css-1kp3ott-MuiContainer-root {
     max-width: 250px !important;
   }
-}
+} */

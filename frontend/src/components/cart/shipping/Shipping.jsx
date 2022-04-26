@@ -40,7 +40,9 @@ const Shipping = () => {
   return (
     <Fragment>
       <MetaData title='PTS- Shipping Details' />
-      <Container sx={{ position: 'relative', top: '12vh' }}>
+      <Container
+        sx={{ position: 'relative', top: '11vh', paddingBottom: '10vh' }}
+      >
         <CheckoutSteps activeStep={0} />
         <div className='shippingContainer'>
           <div className='shippingBox'>
@@ -107,7 +109,7 @@ const Shipping = () => {
                   {Country &&
                     Country.getAllCountries().map((item) => (
                       <option key={item.isoCode} value={item.isoCode}>
-                        {item.name}
+                        {item.name} {item.isoCode}
                       </option>
                     ))}
                 </select>
@@ -123,7 +125,7 @@ const Shipping = () => {
                   >
                     <option value=''>State</option>
                     {State &&
-                      State.getStatesOfCountry(country).map((item) => (
+                      State.getStatesOfCountry('SE').map((item) => (
                         <option key={item.isoCode} value={item.isoCode}>
                           {item.name}
                         </option>
@@ -138,6 +140,9 @@ const Shipping = () => {
                 className='shippingBtn'
                 disabled={state ? false : true}
               />
+              <button className='shippingBtn' onClick={() => navigate('/cart')}>
+                Back to Cart
+              </button>
             </form>
           </div>
         </div>

@@ -1,20 +1,18 @@
 import React, { Fragment } from 'react'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart'
-import {
-  Grid,
-  Box,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-} from '@mui/material'
+import { Grid, Box } from '@mui/material'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addItemsToCart,
   removeItemsFromCart,
 } from '../../../redux/actions/cartAction'
 import { addToWishList } from '../../../redux/actions/wishListAction'
+import MetaData from '../../MetaData'
 import './Cart.css'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -35,10 +33,12 @@ const Cart = () => {
   }
   const checkoutHandler = () => {
     isAuthenticated === true ? navigate('/shipping') : navigate('/login')
+    alert.error('Please login to place the order')
   }
   // console.log('cartItems', cartItems)
   return (
     <Fragment>
+      <MetaData title='PTS - Cart' />
       {cartItems.length === 0 ? (
         <div className='emptyCart'>
           <RemoveShoppingCartIcon />
@@ -53,10 +53,10 @@ const Cart = () => {
             alignItems='center'
             gap={0.5}
             sx={{
-              // height: '120vh',
-              marginLeft: '0.5%',
               position: 'relative',
-              top: '11vh',
+              top: '10.5vh',
+              justifyContent: 'center',
+              paddingBottom: '10vh',
             }}
           >
             <Typography variant='h6'>
@@ -87,13 +87,20 @@ const Cart = () => {
               cartItems.map((item) => (
                 <Grid container lg={3} md={4} sm={6} xs={12}>
                   <Card
-                    sx={{ margin: '10px 0', width: '250px', height: '150px' }}
+                    sx={{
+                      margin: '10px 0',
+                      width: '300px',
+                      height: '170px',
+                      padding: '10px',
+                    }}
                   >
                     <Box sx={{ display: 'flex' }}>
-                      <Box>
+                      <Box sx={{ padding: '5px' }}>
                         <CardMedia
                           component='img'
-                          height='100'
+                          className='cartImg'
+                          height='120px'
+                          // width='83.5px'
                           image={item.image}
                           alt='item'
                         />
@@ -101,6 +108,11 @@ const Cart = () => {
                           className='button'
                           size='small'
                           variant='contained'
+                          sx={{
+                            marginTop: '5px',
+                            fontSize: 'x-small',
+                            paddinf: '5px',
+                          }}
                           onClick={(id) => {
                             dispatch(removeItemsFromCart(item.product))
                             dispatch(() =>
@@ -111,12 +123,13 @@ const Cart = () => {
                           Save for later
                         </Button>
                       </Box>
-                      <Box>
-                        <CardContent>
+                      <Box sx={{ paddingLeft: '12px' }}>
+                        <CardContent sx={{ padding: '0' }}>
                           <Typography
                             gutterBottom
                             variant='subtitle2'
                             component='div'
+                            sx={{ height: '44px' }}
                           >
                             {item.name}
                           </Typography>
@@ -155,6 +168,7 @@ const Cart = () => {
                             className='button'
                             size='small'
                             variant='contained'
+                            sx={{ marginTop: '5px', fontSize: 'x-small' }}
                             onClick={(id) => {
                               dispatch(removeItemsFromCart(item.product))
                             }}

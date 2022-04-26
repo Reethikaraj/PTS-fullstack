@@ -1,19 +1,21 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import MetaData from '../../MetaData'
 import Loader from '../../layout/loading/Loader'
-import { Link } from 'react-router-dom'
+import { Box, Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import './Profile.css'
 
-const Profile = ({ history }) => {
+const Profile = () => {
+  const navigate = useNavigate()
   const { user, loading, isAuthenticated } = useSelector(
     (state) => state.userReducer
   )
-  useEffect(() => {
-    if (isAuthenticated === false) {
-      history.push('/login')
-    }
-  }, [history, isAuthenticated])
+
+  if (isAuthenticated === false) {
+    navigate('/login')
+  }
+
   return (
     <Fragment>
       {loading ? (
@@ -21,32 +23,62 @@ const Profile = ({ history }) => {
       ) : (
         <Fragment>
           <MetaData title={`${user.name}'s Profile`} />
-          <div className='profileContainer'>
-            <div>
-              <h1>My Profile</h1>
-              <img src={user.avatar.url} alt={user.name} />
-              <Link to='/me/update'>Edit Profile</Link>
-            </div>
-            <div>
-              <div>
-                <h4>Full Name</h4>
-                <p>{user.name}</p>
-              </div>
-              <div>
-                <h4>Email</h4>
-                <p>{user.email}</p>
-              </div>
-              <div>
-                <h4>Joined On</h4>
-                <p>{String(user.createdAt).substr(0, 10)}</p>
-              </div>
 
-              <div>
-                <Link to='/orders'>My Orders</Link>
-                <Link to='/password/update'>Change Password</Link>
-              </div>
-            </div>
-          </div>
+          <Box
+            sx={{
+              position: 'relative',
+              top: '11vh',
+              padding: '5vh 5vh 10vh 5vh',
+              width: '300px',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h1>{user.name}'s Profile</h1>
+            <Box sx={{ margin: '10px 0' }}>
+              <h4>Name</h4>
+              <p>{user.name}</p>
+            </Box>
+            <Box sx={{ margin: '10px 0' }}>
+              <h4>Email</h4>
+              <p>{user.email}</p>
+            </Box>
+            <Box sx={{ margin: '10px 0' }}>
+              <h4>Joined On</h4>
+              <p>{String(user.createdAt).substr(0, 10)}</p>
+            </Box>
+            <Box sx={{ margin: '10px 0' }}>
+              <Button
+                onClick={() => navigate('/me/update')}
+                className='button'
+                variant='contained'
+                size='small'
+                fullWidth
+              >
+                Edit Profile
+              </Button>
+            </Box>
+            <Box sx={{ margin: '10px 0' }}>
+              <Button
+                className='button'
+                variant='contained'
+                size='small'
+                fullWidth
+                onClick={() => navigate('/password/update')}
+              >
+                Change Password
+              </Button>
+            </Box>
+            <Button
+              className='button'
+              variant='contained'
+              size='small'
+              fullWidth
+              onClick={() => navigate('/orders')}
+            >
+              My Orders
+            </Button>
+          </Box>
         </Fragment>
       )}
     </Fragment>

@@ -1,16 +1,6 @@
-.Footer {
-  color: var(--text-secondary) !important;
-  background-image: linear-gradient(
-    to right,
-    var(--background-secondary),
-    var(--background-primary)
-  );
+.adminNavbar {
   box-shadow: 5px 0px 10px 1px #888888 !important;
-  justify-content: space-around;
-  padding-top: 10px;
-  position: fixed;
-  bottom: 300px;
-  z-index: 3;
+  padding: 10px 5% 0 1%;
 }
 
 .tooltip {
@@ -38,8 +28,4 @@
 }
 .tooltip:hover .tooltiptext {
   visibility: visible;
-}
-
-.icon {
-  color: var(--text-secondary) !important;
 }
