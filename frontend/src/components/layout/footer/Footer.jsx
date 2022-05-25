@@ -11,7 +11,6 @@ import './Footer.css'
 
 const Footer = () => {
   const navigate = useNavigate()
-  const { orders } = useSelector((state) => state.myOrdersReducer)
   const { isAuthenticated, user } = useSelector((state) => state.userReducer)
 
   return (
@@ -39,7 +38,7 @@ const Footer = () => {
           />
           <span className='tooltiptext'>Products</span>
         </Box>
-        {isAuthenticated === true && orders?.length >= 1 ? (
+        {isAuthenticated === true ? (
           <Box className='tooltip'>
             <WorkIcon className='icon' onClick={() => navigate('/orders')} />
             <span className='tooltiptext'>Orders</span>

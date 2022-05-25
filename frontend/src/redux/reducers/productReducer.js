@@ -4,6 +4,8 @@ const initialState = {
   error: null,
   productCount: 0,
   resultsPerPage: 0,
+  price: true,
+  rating: false,
 }
 
 export const productReducer = (state = initialState, action) => {
@@ -31,6 +33,23 @@ export const productReducer = (state = initialState, action) => {
         error: action.payload,
       }
     }
+    case 'SORT_BY_PRICE':
+      return {
+        ...state,
+        products: action.payload
+          ? [...state.products].sort((a, b) => (a.price > b.price ? 1 : -1))
+          : [...state.products].sort((a, b) => (a.price < b.price ? 1 : -1)),
+        price: !state.price,
+      }
+
+    case 'SORT_BY_RATING':
+      return {
+        ...state,
+        products: action.payload
+          ? [...state.products].sort((a, b) => (a.rating > b.rating ? 1 : -1))
+          : [...state.products].sort((a, b) => (a.rating < b.rating ? 1 : -1)),
+        rating: !state.rating,
+      }
     case 'CLEAR_ERRORS': {
       return {
         ...state,

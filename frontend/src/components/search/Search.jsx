@@ -1,41 +1,61 @@
-import { Button, Box } from '@mui/material'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import MetaData from '../MetaData'
+import SearchIcon from '@mui/icons-material/Search'
+import CloseIcon from '@mui/icons-material/Close'
 import './Search.css'
 
-const Search = ({ history }) => {
-  const navigate = useNavigate()
-  const [keyword, setKeyword] = useState('')
-  const searchSubmitHandler = (e) => {
-    // e.preventDefault()
-    if (keyword.trim()) {
-      navigate(`/products/${keyword}`)
+const Search = ({ placeholder, data }) => {
+  const [filteredData, setFilteredData] = useState([])
+  const [wordEntered, setWordEntered] = useState('')
+  const handleFilter = (event) => {
+    const searchWord = event.target.value
+    setWordEntered(searchWord)
+    const newFilter = data.filter((value) => {
+      return value.name.toLowerCase().includes(searchWord.toLowerCase())
+    })
+    if (searchWord === '') {
+      setFilteredData([])
     } else {
-      navigate('/products')
+      setFilteredData(newFilter)
     }
   }
+  const clearInput = () => {
+    setFilteredData([])
+    setWordEntered('')
+  }
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexGrow: 2,
-        width: '100%',
-        position: 'relative',
-        top: '11vh',
-      }}
-    >
-      <MetaData title='Search -- PTS' />
-      <form className='searchBox' onSubmit={searchSubmitHandler}>
+    <div className='search'>
+      <div className='searchInputs'>
         <input
           type='text'
-          placeholder='Search...'
-          onChange={(e) => (setKeyword(e.target.value), searchSubmitHandler)}
+          placeholder={placeholder}
+          value={wordEntered}
+          onChange={handleFilter}
         />
-      </form>
-      <Button variant='fill'>Search</Button>
-    </Box>
+        <div className='searchIcon'>
+          {filteredData.length === 0 ? (
+            <SearchIcon />
+          ) : (
+            <CloseIcon id='clearBtn' onClick={clearInput} />
+          )}
+        </div>
+      </div>
+      {filteredData.length !== 0 && (
+        <div className='dataResult'>
+          {filteredData.slice(0, 15).map((value, key) => {
+            return (
+              <a
+                className='dataItem'
+                href={`/product/${value._id}`}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <p>{value.name} </p>
+              </a>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }
 

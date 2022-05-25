@@ -31,60 +31,71 @@ const MyOrders = () => {
       <Typography variant='h6' sx={{ textAlign: 'center' }}>
         {user.name}'s orders
       </Typography>
-      <Grid container gap={1} sx={{ justifyContent: 'space-evenly' }}>
-        {orders?.map((order) => (
-          <Link className='link' to={`/order/${order._id}`}>
-            <Grid lg={3} md={4} sm={8} xs={12}>
-              <Card sx={{ padding: '10px', width: '250px', height: '250px' }}>
-                <Typography variant='body1' color='text.secondary' gutterBottom>
-                  Order no: {order._id}
-                </Typography>
-                <Box sx={{ display: 'flex' }}>
+      {orders?.length === 0 ? (
+        <div className='emptyCart'>
+          <Typography>No Orders Placed</Typography>
+          <Link to='/products'>View products</Link>
+        </div>
+      ) : (
+        <Grid container gap={1} sx={{ justifyContent: 'space-evenly' }}>
+          {orders?.map((order) => (
+            <Link className='link' to={`/order/${order._id}`}>
+              <Grid lg={3} md={4} sm={8} xs={12}>
+                <Card sx={{ padding: '10px', width: '250px', height: '250px' }}>
                   <Typography
-                    sx={{ flexGrow: 0.1 }}
-                    variant='body2'
-                    component='div'
+                    variant='body1'
+                    color='text.secondary'
+                    gutterBottom
                   >
-                    Order Status:
+                    Order no: {order?._id}
                   </Typography>
-                  {order.orderStatus === 'Delivered' ? (
-                    <Typography variant='body2' component='div' color='green'>
-                      {order.orderStatus}
+                  <Box sx={{ display: 'flex' }}>
+                    <Typography
+                      sx={{ flexGrow: 0.1 }}
+                      variant='body2'
+                      component='div'
+                    >
+                      Order Status:
                     </Typography>
-                  ) : (
-                    <Typography variant='body2' component='div' color='red'>
-                      {order.orderStatus}
-                    </Typography>
-                  )}
-                </Box>
-                <Typography variant='body2' color='text.secondary'>
-                  No. of items: {order.orderItems.length}
-                </Typography>
-                <Typography variant='body2' color='text.secondary'>
-                  Amount paid: {order.totalPrice} sek
-                </Typography>
-                <Typography variant='body2' color='text.secondary'>
-                  Placed at: {order.createdAt}
-                </Typography>
-                <Typography variant='body2'>
-                  Shipping adress:
-                  <br />
-                  {order.shippingInfo.address}
-                  <br />
-                  {order.shippingInfo.city}
-                  <br />
-                  {order.shippingInfo.country}
-                  <br />
-                  {order.shippingInfo.pinCode}
-                  <br />
-                  {order.shippingInfo.phoneNo}
-                  <br />
-                </Typography>
-              </Card>
-            </Grid>
-          </Link>
-        ))}
-      </Grid>
+                    {order.orderStatus === 'Delivered' ? (
+                      <Typography variant='body2' component='div' color='green'>
+                        {order?.orderStatus}
+                      </Typography>
+                    ) : (
+                      <Typography variant='body2' component='div' color='red'>
+                        {order?.orderStatus}
+                      </Typography>
+                    )}
+                  </Box>
+                  <Typography variant='body2' color='text.secondary'>
+                    No. of items: {order.orderItems.length}
+                  </Typography>
+                  <Typography variant='body2' color='text.secondary'>
+                    Amount paid: {order.totalPrice} sek
+                  </Typography>
+                  <Typography variant='body2' color='text.secondary'>
+                    Placed at: {order.createdAt}
+                  </Typography>
+                  <Typography variant='body2'>
+                    Shipping adress:
+                    <br />
+                    {order.shippingInfo.address}
+                    <br />
+                    {order.shippingInfo.city}
+                    <br />
+                    {order.shippingInfo.country}
+                    <br />
+                    {order.shippingInfo.pinCode}
+                    <br />
+                    {order.shippingInfo.phoneNo}
+                    <br />
+                  </Typography>
+                </Card>
+              </Grid>
+            </Link>
+          ))}
+        </Grid>
+      )}
     </Container>
   )
 }

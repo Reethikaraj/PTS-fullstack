@@ -15,9 +15,11 @@ import { addToWishList } from '../../../redux/actions/wishListAction'
 import MetaData from '../../MetaData'
 import './Cart.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAlert } from 'react-alert'
 
 const Cart = () => {
   const dispatch = useDispatch()
+  const alert = useAlert()
   const navigate = useNavigate()
   const { isAuthenticated, user } = useSelector((state) => state.userReducer)
   const { cartItems } = useSelector((state) => state.cartReducer)

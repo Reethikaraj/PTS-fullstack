@@ -28,6 +28,7 @@ import Dashboard from './components/admin/dashboard/Dashboard'
 import AdminRoute from './components/route/AdminRoute'
 import ProductList from './components/admin/products/productlist/ProductList'
 import CreateProduct from './components/admin/products/createproduct/CreateProduct'
+import Contact from './components/layout/contact/Contact'
 function App() {
   const themes = useSelector((state) => state.themeReducer.theme)
   const [stripeApiKey, setStripeApiKey] = useState('')
@@ -47,6 +48,7 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/contact' element={<Contact />} />
           <Route path='/sad' element={<Loader />} />
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route path='/products' element={<Products />} />

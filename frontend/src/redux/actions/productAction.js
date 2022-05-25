@@ -22,7 +22,18 @@ export const getProduct = (category) => async (dispatch) => {
     })
   }
 }
-
+export function sortByPrice(price) {
+  return {
+    type: 'SORT_BY_PRICE',
+    payload: price,
+  }
+}
+export function sortByRating(rating) {
+  return {
+    type: 'SORT_BY_RATING',
+    payload: rating,
+  }
+}
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: 'CLEAR_ERRORS' })

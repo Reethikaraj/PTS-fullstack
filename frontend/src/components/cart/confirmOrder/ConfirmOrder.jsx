@@ -43,6 +43,7 @@ const ConfirmOrder = () => {
                 <div>
                   <p>Name:</p>
                   <span>{user.name}</span>
+                  <span>{user.lastName}</span>
                 </div>
                 <div>
                   <p>Phone:</p>
