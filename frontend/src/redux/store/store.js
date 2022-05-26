@@ -5,7 +5,10 @@ import { productReducer, newProductReducer } from '../reducers/productReducer'
 import { productDetailsReducer } from '../reducers/productDetailsReducer'
 import { themeReducer } from '../reducers/themeReducer'
 import { userReducer } from '../reducers/userReducer'
-import { profileReducer } from '../reducers/profileReducer'
+import {
+  profileReducer,
+  forgotPasswordReducer,
+} from '../reducers/profileReducer'
 import { cartReducer } from '../reducers/cartReducer'
 import {
   newOrderReducer,
@@ -35,6 +38,7 @@ export const rootReducer = combineReducers({
   newReviewReducer: newReviewReducer,
   productReviewsReducer: productReviewsReducer,
   reviewReducer: reviewReducer,
+  forgotPasswordReducer: forgotPasswordReducer,
 })
 function saveToLocalStorage(state) {
   const localStorageState = JSON.stringify(state)

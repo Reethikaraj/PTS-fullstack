@@ -56,6 +56,7 @@ const UpdateProfile = () => {
           <MetaData title='Update Profile' />
           <Container
             className='updateProfileContainer'
+            maxWidth='sm'
             sx={{ position: 'relative', top: '13vh' }}
           >
             <Box

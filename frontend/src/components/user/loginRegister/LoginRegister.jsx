@@ -157,7 +157,7 @@ const LoginRegister = () => {
             >
               Login
             </Button>
-            <Link href='#'>Forgot password?</Link>
+            <Link href='/password/forgot'>Forgot password?</Link>
           </Box>
         </Box>
         <Box

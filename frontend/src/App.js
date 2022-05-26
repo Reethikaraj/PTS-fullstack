@@ -29,6 +29,8 @@ import AdminRoute from './components/route/AdminRoute'
 import ProductList from './components/admin/products/productlist/ProductList'
 import CreateProduct from './components/admin/products/createproduct/CreateProduct'
 import Contact from './components/layout/contact/Contact'
+import UpdatePassword from './components/user/updatePassword/UpdatePassword'
+import ForgotPassword from './components/user/forgotpassword/ForgotPassword'
 function App() {
   const themes = useSelector((state) => state.themeReducer.theme)
   const [stripeApiKey, setStripeApiKey] = useState('')
@@ -56,10 +58,12 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishlist' element={<WishList />} />
           <Route path='/login' element={<LoginRegister />} />
+          <Route path='/password/forgot' element={<ForgotPassword />} />
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
             <Route path='/account' element={<Profile />} />
             <Route path='/me/update' element={<UpdateProfile />} />
+            <Route path='/password/update' element={<UpdatePassword />} />
             <Route path='/shipping' element={<Shipping />} />
             <Route path='/order/confirm' element={<ConfirmOrder />} />
             <Route
